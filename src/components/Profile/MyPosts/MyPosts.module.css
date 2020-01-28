@@ -1,0 +1,55 @@
+
+
+.myPosts {
+  border-top: 1px solid;
+  padding-top: 20px;
+}
+
+.postsInp {
+  position: relative;
+  padding-bottom: 70px;
+  border-bottom: 1px solid;
+}
+
+.postsInp textarea {
+  box-sizing: border-box;
+  width: 100%;
+  height: 40px;
+  background: #bbb;
+  border: none;
+  color: #fff;
+  padding: 0 8px;
+  font: 20px Arial;
+  outline: none;
+  border: 2px #bbb solid;
+  line-height: 32px;
+}
+
+.postsInp textarea:focus {
+  background: #fff;
+  color: #999;
+  border: 2px #999 solid;
+
+}
+
+.postsInp textarea::placeholder {
+  color: #fff;
+}
+
+.postsInp button {
+  display: block;
+  height: 26px;
+  border: none;
+  outline: none;
+  background: rgb(209, 93, 15);
+  font: 20px Arial;
+  color: #fff;
+  cursor: pointer;
+  transition: transform 0.05s linear;
+  position: absolute;
+  right: 0px;
+}
+
+.postsInp button:active {
+  transform: scale(0.95);
+}

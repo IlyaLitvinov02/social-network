@@ -1,0 +1,29 @@
+
+/*
+.img {
+  background: url('../../img/noty-1.jpg');
+  width: 100%;
+  height: 200px;
+}
+*/
+
+.bio {
+  width: 100%;
+  margin-top: 7px;
+  padding-bottom: 30px;
+}
+
+.bio img {
+  float: left;
+  padding-right: 20px;
+}
+
+.info ul {
+  list-style-type: none;
+}
+
+.nick {
+  font-weight: bold;
+  font: 18px Arial;
+}
+

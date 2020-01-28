@@ -1,0 +1,9 @@
+.warning {
+    animation-name: warningAnim;
+    animation-duration: 2s;
+}
+
+@keyframes warningAnim {
+    from {background: red;}
+    to {background: #fff;}
+}

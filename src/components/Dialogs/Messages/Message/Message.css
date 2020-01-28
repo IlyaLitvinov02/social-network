@@ -1,0 +1,37 @@
+.message.outcoming {
+    background: rgb(83, 155, 93);
+    float: right;
+}
+
+.message.incoming {
+    background: #888;
+    float: left;
+}
+
+.message {
+    padding: 5px;
+    max-width: 75%;
+    word-break: break-all;
+    border-radius: 5px;
+    margin: 2px;
+    position: relative;
+}
+
+.messageText {
+    font: 18px Arial;
+    line-height: 20px;
+    color: #fff;
+    padding: 0 55px 2px 2px;
+}
+
+.messageTime {
+    font: 12px Arial;
+    color: #ddd;
+    position: absolute;
+    right: 5px;
+    bottom: 5px;
+}
+
+.clear {
+    clear: both;
+}

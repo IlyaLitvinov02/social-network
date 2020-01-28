@@ -1,0 +1,41 @@
+.nav {
+    grid-area: nav;
+    height: 500px;
+    background: #999;
+    position: relative;
+    padding: 10px;
+}
+
+
+.nav div {
+    border-bottom: 1px rgb(166, 198, 206) solid;
+}
+
+.nav div a {
+    display: block;
+    line-height: 20px;
+    padding: 10px 5px;
+    font: 20px Arial;
+    cursor: pointer;
+    color: white;
+    text-decoration: none;
+}
+
+.nav div a:hover {
+    background: white;
+    color: #999;
+}
+
+
+
+.settings {
+    position: absolute;
+    bottom: 20px;
+    width: 90%;
+    border-top: 1px rgb(166, 198, 206) solid;
+}
+
+.nav div a.active {
+    background: white;
+    color: #999;
+}

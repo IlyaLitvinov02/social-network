@@ -1,0 +1,80 @@
+.dialogs {
+    display: grid;
+    grid-template-columns: 2fr 10fr;
+    height: 500px;
+}
+
+
+.dialogItems a {
+    text-decoration: none;
+    color: black;
+    display: block;
+    font: 18px Arial;
+    border-bottom: 1px #888 solid;
+    padding: 10px 5px;
+}
+
+.dialogItems a:hover {
+    background: #888;
+    color: white;
+}
+
+
+
+
+/* СТИЛИ МЕССЕДЖЕЙ */
+
+
+
+
+.messages {
+    border: #888 3px solid;
+    border-bottom: none;
+    padding: 3px;
+    position: relative;
+    overflow: auto;
+}
+
+
+.messagesInput {
+    box-sizing: border-box;
+    width: 100%;
+    position: absolute;
+    bottom: 2px;
+    left: 0px;
+    background: #888;
+    outline: #888 3px solid;
+}
+
+.messagesInput input {
+    box-sizing: border-box;
+    width: 90%;
+    height: 30px;
+    background: #fff;
+    border: none;
+    color: #888;
+    padding: 0 5px;
+    font: 20px Arial;
+    outline: none;
+    line-height: 38px;
+    border: 2px #888 solid;
+}
+
+
+
+.messagesInput button {
+    width: 10%;
+    height: 30px;
+    border: none;
+    outline: none;
+    background: #fff;
+    font: 20px Arial;
+    color: #888;
+    cursor: pointer;
+    transition: transform 0.05s linear;
+    border: 2px #888 solid;
+}
+
+.messagesInput button:active {
+    transform: scale(0.95);
+}

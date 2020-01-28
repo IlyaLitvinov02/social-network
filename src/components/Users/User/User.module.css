@@ -1,0 +1,33 @@
+.userItem a{
+    text-decoration: none;
+    color: #000;
+    font: 18px Arial;
+    padding-left: 20px;
+}
+
+.userItem {
+    padding: 20px 0 20px 20px;
+    border-bottom: 1px solid;
+}
+
+.followBtn {
+    display: block;
+    background: blue;
+    color: #fff;
+    width: 80px;
+    height: 20px;
+    outline: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.2s ease;
+}
+
+.followBtn:active {
+    transform: scale(0.89);
+}
+
+.ava {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}

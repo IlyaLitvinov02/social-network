@@ -1,0 +1,24 @@
+body {
+  /* background: url('./img/noty-1.jpg'); */
+  background: #333;
+}
+
+.appWrapper {
+  width: 80%;
+  margin: 0 auto;
+  margin-bottom: 10px;
+  display: grid;
+
+  grid-template-areas:
+  "header header"
+  "nav cont";
+  grid-template-rows: 45px 1fr;
+  grid-template-columns: 2fr 10fr;
+  grid-gap: 10px; 
+}
+
+.contentWrapper {
+  grid-area: cont;
+  background: #fff;
+  padding: 10px;
+}

@@ -1,0 +1,15 @@
+
+.post {
+  box-sizing: border-box;
+  width: 100%;
+  border-bottom: 1px solid;
+  font: 20px Arial; 
+  padding: 30px 0 30px 20px;
+  word-break: break-all;
+}
+
+.date {
+  float: right;
+  font: 12px Arial;
+  color: grey;
+}
