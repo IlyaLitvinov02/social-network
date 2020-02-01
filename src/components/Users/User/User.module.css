@@ -8,6 +8,8 @@
 .userItem {
     padding: 20px 0 20px 20px;
     border-bottom: 1px solid;
+    display: grid;
+    grid-template-columns: 1fr 10fr;
 }
 
 .followBtn {

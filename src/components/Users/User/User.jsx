@@ -6,11 +6,15 @@ import avatar from './ava.png';
 const User = (props) => {
     return (
         <div className={s.userItem}>
-            <img src={props.ava.small != null ? props.ava.small : avatar} alt="ava" className={s.ava} />
-            <NavLink to={'/users/' + props.id}>{props.name}</NavLink>
-            {(props.followed)
-                ? <button className={s.followBtn} onClick={props.toggleFollow}>Unfollow</button>
-                : <button className={s.followBtn} onClick={props.toggleFollow}>Follow</button>}
+            <div>
+                <img src={props.ava.small != null ? props.ava.small : avatar} alt="ava" className={s.ava} />
+                {(props.followed)
+                    ? <button className={s.followBtn} onClick={props.toggleFollow}>Unfollow</button>
+                    : <button className={s.followBtn} onClick={props.toggleFollow}>Follow</button>}
+            </div>
+            <div>
+                <NavLink to={'/users/' + props.id}>{props.name}</NavLink>
+            </div>
         </div>
     );
 }
