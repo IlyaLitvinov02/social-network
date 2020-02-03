@@ -8,9 +8,7 @@ const User = (props) => {
         <div className={s.userItem}>
             <div>
                 <img src={props.ava.small != null ? props.ava.small : avatar} alt="ava" className={s.ava} />
-                {(props.followed)
-                    ? <button className={s.followBtn} onClick={props.toggleFollow}>Unfollow</button>
-                    : <button className={s.followBtn} onClick={props.toggleFollow}>Follow</button>}
+                <button className={s.followBtn} onClick={props.toggleFollow}>{(props.followed) ? 'Unfollow' : 'Follow'}</button>
             </div>
             <div>
                 <NavLink to={'/users/' + props.id}>{props.name}</NavLink>
