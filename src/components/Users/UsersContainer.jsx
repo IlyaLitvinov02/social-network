@@ -1,37 +1,42 @@
+import React from 'react';
 import { connect } from "react-redux";
 import Users from "./Users";
-import { toggleFollowAC, setUsersAC, changeCurrentPageAC, setTotalUsersCountAC } from "../../redux/usersReducer";
-import Axios from "axios";
+import { toggleFollow, setUsers, loadMore, setTotalUsersCount, setLoading, appendUsers, setDefaultPage } from "../../redux/usersReducer";
+import * as axios from "axios";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        Axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`)
+        if (this.props.state.usersData.length === 0) {
+            this.props.setLoading();
+            axios
+                .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`)
+                .then(response => {
+                    this.props.setLoading();
+                    this.props.setUsers(response.data.items);
+                    this.props.setTotalUsersCount(response.data.totalCount);
+                });
+        }
+    }
+
+    loadMore = () => {
+        this.props.setLoading();
+        this.props.loadMore();
+        axios
+            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage + 1}&count=${this.props.state.pageSize}`)
             .then(response => {
-                this.props.setUsers(response.data.items);
-                this.props.setTotalUsersCount(response.data.totalCount);
+                this.props.setLoading();
+                this.props.appendUsers(response.data.items);
             });
     }
 
-    changeCurrentPage = (page, btnType) => {
-        this.props.changeCurrentPage(page, btnType);
-        Axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${page}&count=${this.props.state.pageSize}`)
-            .then(response => {
-                this.props.setUsers(response.data.items);
-            });
-    }
 
     render() {
         return (
-            <Users onBtnClick={this.changeCurrentPage} toggleFollow={this.props.toggleFollow} state={this.props.state} />
+            <Users onBtnClick={this.loadMore} toggleFollow={this.props.toggleFollow} state={this.props.state} />
         );
     }
 }
-
-
-
 
 
 let mapStateToProps = (state) => {
@@ -40,6 +45,17 @@ let mapStateToProps = (state) => {
     };
 }
 
+
+
+export default connect(mapStateToProps, {
+    toggleFollow, setUsers, loadMore, setTotalUsersCount, setLoading, appendUsers, setDefaultPage
+})(UsersContainer);
+
+
+
+
+
+/*
 let mapDispatchToProps = (dispatch) => {
     return {
         toggleFollow: (userId) => {
@@ -50,15 +66,25 @@ let mapDispatchToProps = (dispatch) => {
             dispatch(setUsersAC(users));
         },
 
-        changeCurrentPage: (page, btnType) => {
-            dispatch(changeCurrentPageAC(page, btnType))
+        loadMore: (page, btnType) => {
+            dispatch(loadMoreAC(page, btnType))
         },
 
         setTotalUsersCount: (count) => {
             dispatch(setTotalUsersCountAC(count));
+        },
+
+        setLoading: () => {
+            dispatch(setLoadingAC());
+        },
+
+        appendUsers: (users) => {
+            dispatch(appendUsersAC(users));
+        },
+
+        setDefaultPage: () => {
+            dispatch(setDefaultPageAC());
         }
     };
 }
-
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
-
+*/

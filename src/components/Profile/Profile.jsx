@@ -1,12 +1,17 @@
 import React from 'react';
 import MyPostsContainer from './MyPosts/MyPostsContainer.jsx';
-import ProfileInfoContainer from './ProfileInfo/ProfileInfoContainer';
+import ProfileInfo from './ProfileInfo/ProfileInfo';
+import Preloder from '../common/Preloder/Preloder.jsx';
 
 
 function Profile(props) {
+    if (!props.state.profileState.userProfile) {
+        return <Preloder />
+    }
+
     return (
         <div>
-            <ProfileInfoContainer />
+            <ProfileInfo state={props.state.profileState} />
             <MyPostsContainer />
         </div>
     );

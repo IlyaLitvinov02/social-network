@@ -1,15 +1,19 @@
 const TOGGLE_FOLLOW = 'TOGGLE_FOLLOW';
 const SET_USERS = 'SET_USERS';
-const CHANGE_CURRENT_PAGE = 'CHANGE_CURRENT_PAGE';
+const LOAD_MORE = 'LOAD_MORE';
 const SET_TOTAL_USER_COUNT = 'SET_TOTAL_USER_COUNT';
-// const GET_PREVIOUS_PAGE = 'GET_PREVIOUS_PAGE';
-// const GET_NEXT_PAGE = 'GET_PREVIOUS_PAGE';
+const SET_LOADING = 'SET_LOADING';
+const APPEND_USERS = 'APPEND_USERS';
+const SET_DEFAULT_PAGE = 'SET_DEFAULT_PAGE';
+
+
 
 let initialState = {
    usersData: [],
    totalUsersCount: 0,
    pageSize: 4,
-   currentPage: 1
+   currentPage: 1,
+   isLoading: false
 }
 
 const usersReducer = (state = initialState, action) => {
@@ -23,6 +27,11 @@ const usersReducer = (state = initialState, action) => {
          return {
             ...state,
             totalUsersCount: action.count
+         }
+      case SET_LOADING:
+         return {
+            ...state,
+            isLoading: !state.isLoading
          }
       case TOGGLE_FOLLOW:
          return {
@@ -38,25 +47,38 @@ const usersReducer = (state = initialState, action) => {
                }
             })
          }
-      case CHANGE_CURRENT_PAGE:
+      case LOAD_MORE:
          return {
             ...state,
-            currentPage: (action.btnType === 'pre' & state.currentPage !== 1) ? action.page : action.page 
+            currentPage: state.currentPage + 1
          }
-      // case GET_PREVIOUS_PAGE: 
-      //    return {
-      //       ...state,
-
-      //    }
+      case APPEND_USERS:
+         return {
+            ...state,
+            usersData: [...state.usersData, ...action.u]
+         }
+      case SET_DEFAULT_PAGE:
+         return {
+            ...state,
+            currentPage: 1
+         }
       default:
          return state
    }
 }
 
-export const toggleFollowAC = (userId) => ({ type: TOGGLE_FOLLOW, userId });
-export const setUsersAC = (u) => ({ type: SET_USERS, u });
-export const changeCurrentPageAC = (page, btnType) => ({ type: CHANGE_CURRENT_PAGE, page, btnType });
-export const setTotalUsersCountAC = (count) => ({ type: SET_TOTAL_USER_COUNT, count });
+
+
+
+export const toggleFollow = (userId) => ({ type: TOGGLE_FOLLOW, userId });
+export const setUsers = (u) => ({ type: SET_USERS, u });
+export const loadMore = () => ({ type: LOAD_MORE });
+export const setTotalUsersCount = (count) => ({ type: SET_TOTAL_USER_COUNT, count });
+export const setLoading = () => ({ type: SET_LOADING });
+export const appendUsers = (u) => ({ type: APPEND_USERS, u });
+export const setDefaultPage = () => ({ type: SET_DEFAULT_PAGE });
+
+
 
 
 

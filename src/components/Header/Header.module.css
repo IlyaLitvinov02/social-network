@@ -3,6 +3,19 @@
     background: #888;
 }
 
-/* .logo {
-    background: url('./img/logo.png');
-  }  */
+.loginBlock {
+    min-width: 65px;
+    height: 24px;
+    background-color: white;
+    float: right;
+    margin-top: 10px;
+    margin-right: 10px;
+}
+
+.loginBlock a {
+    display: block;
+    line-height: 22px;
+    text-decoration: none;
+    padding: 0 10px 0 10px;
+    text-align: center;
+}

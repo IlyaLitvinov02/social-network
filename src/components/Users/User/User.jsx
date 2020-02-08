@@ -1,7 +1,7 @@
 import React from 'react';
 import { NavLink } from "react-router-dom";
 import s from './User.module.css';
-import avatar from './ava.png';
+import avatar from '../../../img/ava.png';
 
 const User = (props) => {
     return (
@@ -11,7 +11,7 @@ const User = (props) => {
                 <button className={s.followBtn} onClick={props.toggleFollow}>{(props.followed) ? 'Unfollow' : 'Follow'}</button>
             </div>
             <div>
-                <NavLink to={'/users/' + props.id}>{props.name}</NavLink>
+                <NavLink to={'/profile/' + props.id}>{props.name}</NavLink>
             </div>
         </div>
     );
