@@ -12,19 +12,16 @@ const Users = (props) => {
                   name={el.name}
                   id={el.id}
                   followed={el.followed}
-                  toggleFollow={() => { props.toggleFollow(el.id) }}
+                  follow={() => { props.follow(el.id) }}
+                  unfollow={() => { props.unfollow(el.id) }}
+                  followingInProgress={props.state.followingInProgress}
                   ava={el.photos} key={el.id} />)}
          </div>
          <div className={s.buttons}>
 
-            {/* <button onClick={() => { props.onBtnClick(props.state.currentPage - 1, 'pre') }}>pre</button>
-            <span>{props.state.currentPage}</span>
-            <button onClick={() => { props.onBtnClick(props.state.currentPage + 1, 'next') }}>next</button> */}
-
-            {(props.state.isLoading) ? <Preloder /> : <button onClick={props.onBtnClick}>Load more</button>}
-
-         {/* Кнопку нужно вынести в отдельный файл для использования в других компонентах */}
-
+            {(props.state.isLoading)
+               ? <Preloder />
+               : <button onClick={props.loadMore}>Load more</button>}
          </div>
       </div>
    );

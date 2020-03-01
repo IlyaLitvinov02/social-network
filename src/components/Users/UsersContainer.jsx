@@ -1,39 +1,21 @@
 import React from 'react';
 import { connect } from "react-redux";
 import Users from "./Users";
-import { toggleFollow, setUsers, loadMore, setTotalUsersCount, setLoading, appendUsers, setDefaultPage } from "../../redux/usersReducer";
-import * as axios from "axios";
+import { getUsers, getMoreUsers, follow, unfollow } from "../../redux/usersReducer";
 
 
 class UsersContainer extends React.Component {
     componentDidMount() {
-        if (this.props.state.usersData.length === 0) {
-            this.props.setLoading();
-            axios
-                .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage}&count=${this.props.state.pageSize}`)
-                .then(response => {
-                    this.props.setLoading();
-                    this.props.setUsers(response.data.items);
-                    this.props.setTotalUsersCount(response.data.totalCount);
-                });
-        }
+        this.props.getUsers(this.props.state.usersData, this.props.state.currentPage, this.props.state.pageSize);
     }
-
-    loadMore = () => {
-        this.props.setLoading();
-        this.props.loadMore();
-        axios
-            .get(`https://social-network.samuraijs.com/api/1.0/users?page=${this.props.state.currentPage + 1}&count=${this.props.state.pageSize}`)
-            .then(response => {
-                this.props.setLoading();
-                this.props.appendUsers(response.data.items);
-            });
-    }
-
 
     render() {
         return (
-            <Users onBtnClick={this.loadMore} toggleFollow={this.props.toggleFollow} state={this.props.state} />
+            <Users
+                follow={this.props.follow}
+                unfollow={this.props.unfollow}
+                loadMore={() => { this.props.getMoreUsers(this.props.state.currentPage, this.props.state.pageSize) }}
+                state={this.props.state} />
         );
     }
 }
@@ -47,9 +29,7 @@ let mapStateToProps = (state) => {
 
 
 
-export default connect(mapStateToProps, {
-    toggleFollow, setUsers, loadMore, setTotalUsersCount, setLoading, appendUsers, setDefaultPage
-})(UsersContainer);
+export default connect(mapStateToProps, { getUsers, getMoreUsers, follow, unfollow })(UsersContainer);
 
 
 

@@ -8,7 +8,7 @@ import Music from './components/Music/Music.jsx';
 import Settings from './components/Settings/Settings.jsx';
 import UsersContainer from './components/Users/UsersContainer.jsx';
 import ProfileContainer from './components/Profile/ProfileContainer';
-import HeaderConatiner from './components/Header/HeaderConatiner';
+import HeaderContainer from './components/Header/HeaderContainer';
 
 
 
@@ -18,7 +18,7 @@ function App() {
    return (
       <BrowserRouter>
          <div className='appWrapper'>
-            <HeaderConatiner />
+            <HeaderContainer />
             <Navbar />
             <div className='contentWrapper'>
                <Switch>
@@ -45,6 +45,5 @@ function App() {
 export default App;
 
 
-//  addPost={props.addPost} changeTextareaValue={props.changeTextareaValue} 
 
 // Поставить auto import extension в VS Code

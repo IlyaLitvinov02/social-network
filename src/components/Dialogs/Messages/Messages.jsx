@@ -14,7 +14,7 @@ const Messages = (props) => {
         <div className={s.messages}>
             {messageElements}
             <div className={s.messagesInput}>
-                <input required value={props.state.textareaValue} onChange={props.onTextareaValueChange} />
+                <input value={props.state.textareaValue} onChange={props.onTextareaValueChange} />
                 <button onClick={props.onSendBtnClick}>Send</button>
             </div>
         </div>

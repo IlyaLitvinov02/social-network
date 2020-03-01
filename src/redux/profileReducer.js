@@ -1,3 +1,5 @@
+import { profileAPI } from "../api/api";
+
 const ADD_POST = 'ADD-POST';
 const CHANGE_TEXTAREA_VALUE = 'CHANGE-TEXTAREA-VALUE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
@@ -78,5 +80,12 @@ export const changeTextareaValueActionCreator = (text) => ({ type: CHANGE_TEXTAR
 export const setUserProfile = userProfile => ({ type: SET_USER_PROFILE, userProfile });
 export const setLoading = () => ({ type: SET_LOADING });
 
+export const getUserProfile = userId => dispatch => {
+    dispatch(setLoading());
+    profileAPI.getUserProfile(userId).then(data => {
+        dispatch(setLoading());
+        dispatch(setUserProfile(data));
+    })
+}
 
 export default profileReducer;
