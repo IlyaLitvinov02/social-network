@@ -1,41 +1,96 @@
-.nav {
+nav {
     grid-area: nav;
-    height: 500px;
-    background: #999;
-    position: relative;
-    padding: 10px;
+    /* padding: 10px; */
 }
 
-
-.nav div {
-    border-bottom: 1px rgb(166, 198, 206) solid;
+.navWrap {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px #EBEEF5 solid;
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-.nav div a {
+nav a {
     display: block;
-    line-height: 20px;
-    padding: 10px 5px;
+    padding: 8px 20px;
     font: 20px Arial;
     cursor: pointer;
-    color: white;
+    color: #646A77;
     text-decoration: none;
+    border-radius: 5px;
 }
 
-.nav div a:hover {
-    background: #ababab;
-    color: #fff;
+nav a:hover {
+    background: rgb(223, 240, 255);
 }
 
 
 
-.settings {
-    position: absolute;
-    bottom: 20px;
-    width: 90%;
-    border-top: 1px rgb(166, 198, 206) solid;
+
+
+.icon {
+    width: 24px;
+    height: 24px;
+    float: left;
+    margin-right: 25px;
+    margin-left: 10px;
 }
 
-.nav div a.active {
-    background: white;
-    color: #999;
+
+
+.profileIcon {
+    background-image: url('../../img/home.png');
+}
+
+nav .active .profileIcon {
+    background-image: url('../../img/hoverHome.png');
+}
+
+
+
+.dialogsIcon {
+    background-image: url('../../img/dialogs.png');
+}
+
+nav .active .dialogsIcon {
+    background-image: url('../../img/hoverDialogs.png');
+}
+
+
+.usersIcon {
+    background-image: url('../../img/user.png');
+}
+
+nav .active .usersIcon {
+    background-image: url('../../img/hoverUser.png');
+}
+
+
+.newsIcon {
+    background-image: url('../../img/news.png');
+}
+
+nav .active .newsIcon {
+    background-image: url('../../img/hoverNews.png');
+}
+
+
+.musicIcon {
+    background-image: url('../../img/musicIcon.png');
+}
+
+nav .active .musicIcon {
+    background-image: url('../../img/hoverMusic.png');
+}
+
+.active {
+    transform: scale(1.1, 1.1) translateX(-3px);
+    background: #2193FA;
+    color: #DDEAF7;
+    border: #5CA7FB 1px solid
+}
+
+.active:hover {
+    background: rgb(0, 126, 236);
 }

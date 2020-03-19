@@ -4,12 +4,14 @@ const ADD_POST = 'ADD-POST';
 const CHANGE_TEXTAREA_VALUE = 'CHANGE-TEXTAREA-VALUE';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const SET_LOADING = 'SET_LOADING';
-
+const SET_STATUS = 'SET_STATUS';
 
 let initialState = {
+    isLoading: true,
+
     profileState: {
-        isLoding: false,
-        userProfile: null
+        userProfile: null,
+        status: ""
     },
 
     myPostsState: {
@@ -37,14 +39,11 @@ const profileReducer = (state = initialState, action) => {
             };
         case ADD_POST:                                                           // Добавление поста
             let date = new Date(),
-                hours = date.getHours(),
-                minutes = date.getMinutes(),
-                time = `${hours}:${minutes}`;
-            let postObject = {
-                id: state.myPostsState.postData.length + 1,
-                text: state.myPostsState.textareaValue,
-                time: time
-            };
+                postObject = {
+                    id: state.myPostsState.postData.length + 1,
+                    text: state.myPostsState.textareaValue,
+                    time: `${date.getHours()}:${date.getMinutes()}`
+                };
             return {
                 ...state,
                 myPostsState: {
@@ -65,10 +64,18 @@ const profileReducer = (state = initialState, action) => {
                     userProfile: { ...action.userProfile }
                 }
             }
+        case SET_STATUS:
+            return {
+                ...state,
+                profileState: {
+                    ...state.profileState,
+                    status: action.status
+                }
+            }
         case SET_LOADING:
             return {
                 ...state,
-                isLoading: !state.isLoading
+                isLoading: action.isLoading
             }
         default:
             return state;
@@ -78,14 +85,29 @@ const profileReducer = (state = initialState, action) => {
 export const addPostActionCreator = () => ({ type: ADD_POST });
 export const changeTextareaValueActionCreator = (text) => ({ type: CHANGE_TEXTAREA_VALUE, text });
 export const setUserProfile = userProfile => ({ type: SET_USER_PROFILE, userProfile });
-export const setLoading = () => ({ type: SET_LOADING });
+export const setLoading = isLoading => ({ type: SET_LOADING, isLoading });
+export const setStatus = status => ({ type: SET_STATUS, status })
 
 export const getUserProfile = userId => dispatch => {
-    dispatch(setLoading());
+    dispatch(setLoading(true));
     profileAPI.getUserProfile(userId).then(data => {
-        dispatch(setLoading());
+        dispatch(setLoading(false));
         dispatch(setUserProfile(data));
-    })
+    });
+}
+
+export const getStatus = userId => dispatch => {
+    profileAPI.getStatus(userId).then(response => {
+        dispatch(setStatus(response.data));
+    });
+}
+
+export const updateStatus = status => dispatch => {
+    profileAPI.updateStatus(status).then((response) =>{
+        if(response.data.resultCode === 0) {
+            dispatch(setStatus(status));
+        }
+    });
 }
 
 export default profileReducer;

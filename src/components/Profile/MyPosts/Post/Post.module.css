@@ -1,11 +1,14 @@
 
 .post {
   box-sizing: border-box;
+  border-radius: 5px;
+  border: 1px #EBEEF5 solid;
+  background: #fff;
+  padding: 20px 10px 20px 15px;
   width: 100%;
-  border-bottom: 1px solid;
   font: 20px Arial; 
-  padding: 30px 0 30px 20px;
   word-break: break-all;
+  margin-top: 13px;
 }
 
 .date {

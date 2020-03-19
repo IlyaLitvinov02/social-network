@@ -1,0 +1,32 @@
+.ldsEllipsis {
+  display: inline-block;
+  width: 100px;
+  height: 40px;
+  outline: none;
+  border: none;
+  background: none;
+  cursor: pointer;
+  position: absolute;
+}
+
+.ldsEllipsis div {
+  position: absolute;
+  top: 12px;
+  width: 13px;
+  height: 13px;
+  border-radius: 50%;
+  background: #2193FA;
+  animation-timing-function: cubic-bezier(0, 1, 1, 0);
+}
+
+.ldsEllipsis div:nth-child(1) {
+  left: 15px;
+}
+
+.ldsEllipsis div:nth-child(2) {
+  left: 39px;
+}
+
+.ldsEllipsis div:nth-child(3) {
+  left: 63px;
+}

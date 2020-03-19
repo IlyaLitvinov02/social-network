@@ -27,8 +27,6 @@ let mapStateToProps = (state) => {
     };
 }
 
-
-
 export default connect(mapStateToProps, { getUsers, getMoreUsers, follow, unfollow })(UsersContainer);
 
 

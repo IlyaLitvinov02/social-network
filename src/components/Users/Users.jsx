@@ -1,7 +1,8 @@
 import React from 'react';
 import User from './User/User';
 import s from './Users.module.css';
-import Preloder from '../common/Preloder/Preloder';
+import Preloder from '../common/Preloder/Preloder.jsx';
+import LoadMoreBtn from '../common/LoadMoreBtn/LoadMoreBtn.jsx';
 
 const Users = (props) => {
    return (
@@ -18,10 +19,9 @@ const Users = (props) => {
                   ava={el.photos} key={el.id} />)}
          </div>
          <div className={s.buttons}>
-
             {(props.state.isLoading)
                ? <Preloder />
-               : <button onClick={props.loadMore}>Load more</button>}
+               : <LoadMoreBtn loadMore={props.loadMore}/>}
          </div>
       </div>
    );

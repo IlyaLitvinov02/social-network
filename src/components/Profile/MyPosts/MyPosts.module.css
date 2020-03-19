@@ -1,14 +1,14 @@
-
-
 .myPosts {
-  border-top: 1px solid;
-  padding-top: 20px;
+  margin-top: 13px;
 }
 
 .postsInp {
+  border-radius: 5px;
+  border: 1px #EBEEF5 solid;
+  background: #fff;
   position: relative;
-  padding-bottom: 70px;
-  border-bottom: 1px solid;
+  padding-bottom: 25px;
+
 }
 
 .postsInp textarea {

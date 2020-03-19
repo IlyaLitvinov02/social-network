@@ -1,27 +1,32 @@
-.userItem a{
+.userItem {
+    background-color: #fff;
+    border-radius: 5px;
+    border: 1px #EBEEF5 solid;
+    margin-bottom: 13px;
+    display: grid;
+    grid-template-columns: 1fr 9fr 1fr;
+    padding: 15px;
+}
+
+.userItem a {
     text-decoration: none;
     color: #000;
     font: 18px Arial;
     padding-left: 20px;
 }
 
-.userItem {
-    padding: 10px 0 10px 20px;
-    border-bottom: 1px solid;
-    display: grid;
-    grid-template-columns: 1fr 10fr;
-}
-
 .followBtn {
     display: block;
-    background: blue;
-    color: #fff;
-    width: 90px;
-    height: 20px;
-    outline: none;
+    line-height: 20px;
+    text-decoration: none;
+    padding: 2px 10px 2px 10px;
+    text-align: center;
     border: none;
+    outline: none;
+    border-radius: 7px;
+    color: #DDEAF7;
+    background: #2193FA;
     cursor: pointer;
-    transition: transform 0.2s ease;
 }
 
 .followBtn:active {
@@ -29,7 +34,7 @@
 }
 
 .ava {
-    width: 90px;
-    height: 90px;
+    width: 120px;
+    height: 120px;
     border-radius: 50%;
 }

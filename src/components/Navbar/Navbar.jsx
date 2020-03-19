@@ -1,30 +1,41 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import { NavLink } from "react-router-dom";
+import { connect } from 'react-redux';
 
-function Navbar() {
+const Navbar = (props) => {
+    let icon = `${s.icon} `
     return (
         <nav className={s.nav}>
-            <div>
-                <NavLink to='/profile' activeClassName={s.active}>Profile</NavLink>
-            </div>
-            <div>
-                <NavLink to='/dialogs' activeClassName={s.active}>Dialogs</NavLink>
-            </div>
-            <div>
-                <NavLink to='/users' activeClassName={s.active}>Users</NavLink>
-            </div>
-            <div>
-                <NavLink to='/news' activeClassName={s.active}>News</NavLink>
-            </div>
-            <div>
-                <NavLink to='/music' activeClassName={s.active}>Music</NavLink>
-            </div>
-            <div className={s.settings}>
-                <NavLink to='/settings' activeClassName={s.active}>Settings</NavLink>
+            <div className={s.navWrap}>
+                <NavLink
+                    to={`/profile/${props.myId}`}
+                    isActive={(match, location) => location.pathname === `/profile/${props.myId}`}
+                    activeClassName={s.active}>
+                    <div className={icon + s.profileIcon}></div>
+                    Profile
+                </NavLink>
+                <NavLink to='/dialogs' isActive={(match, location) => location.pathname === '/dialogs'} activeClassName={s.active}>
+                    <div className={icon + s.dialogsIcon}></div>
+                    Dialogs
+                </NavLink>
+                <NavLink to='/users' isActive={(match, location) => location.pathname === '/users'} activeClassName={s.active}>
+                    <div className={icon + s.usersIcon}></div>
+                    Users
+                </NavLink>
+                <NavLink to='/news' isActive={(match, location) => location.pathname === '/news'} activeClassName={s.active}>
+                    <div className={icon + s.newsIcon}></div>
+                    News
+                </NavLink>
+                <NavLink to='/music' isActive={(match, location) => location.pathname === '/music'} activeClassName={s.active}>
+                    <div className={icon + s.musicIcon}></div>
+                    Music
+                </NavLink>
             </div>
         </nav>
     );
 }
 
-export default Navbar;
+
+
+export default connect(state => ({ myId: state.auth.userId }))(Navbar);

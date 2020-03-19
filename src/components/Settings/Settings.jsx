@@ -1,6 +1,5 @@
 import React from 'react';
-import s from './Settings.module.css';
-//import Ava from './../../img/ava.gif';
+//import s from './Settings.module.css';
 
 
 

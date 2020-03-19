@@ -8,6 +8,11 @@ const User = (props) => {
       <div className={s.userItem}>
          <div>
             <img src={props.ava.small != null ? props.ava.small : avatar} alt="ava" className={s.ava} />
+         </div>
+         <div>
+            <Link to={'/profile/' + props.id}>{props.name}</Link>
+         </div>
+         <div>
             {(props.followed)
                ? <button
                   className={s.followBtn}
@@ -16,10 +21,7 @@ const User = (props) => {
                : <button
                   className={s.followBtn}
                   onClick={props.follow}
-                  disabled={props.followingInProgress.some(id => id == props.id)}>Follow</button>}
-         </div>
-         <div>
-            <Link to={'/profile/' + props.id}>{props.name}</Link>
+                  disabled={props.followingInProgress.some(id => id === props.id)}>Follow</button>}
          </div>
       </div>
    );

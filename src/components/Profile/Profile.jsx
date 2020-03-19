@@ -4,15 +4,15 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Preloder from '../common/Preloder/Preloder.jsx';
 
 
-function Profile(props) {
-    if (!props.state.profileState.userProfile) {
-        return <Preloder />
-    }
-
+const Profile = (props) => {
+    if (!props.state.profileState.userProfile || props.state.isLoading) return <Preloder />;
     return (
         <div>
-            <ProfileInfo state={props.state.profileState} />
-            <MyPostsContainer />
+            <ProfileInfo
+                state={props.state.profileState}
+                myProfile={props.myProfile}
+                updateStatus={props.updateStatus} />
+            <MyPostsContainer myProfile={props.myProfile} />
         </div>
     );
 }

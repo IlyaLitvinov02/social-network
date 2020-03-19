@@ -1,10 +1,15 @@
 body {
   /* background: url('./img/noty-1.jpg'); */
-  background: #333;
+  background: #F5F7FA;
+}
+
+header {
+  border-radius: 5px;
+  border: 1px #EBEEF5 solid;
 }
 
 .appWrapper {
-  width: 80%;
+  width: 70%;
   margin: 0 auto;
   margin-bottom: 10px;
   display: grid;
@@ -12,13 +17,13 @@ body {
   grid-template-areas:
   "header header"
   "nav cont";
-  grid-template-rows: 45px 1fr;
-  grid-template-columns: 2fr 10fr;
-  grid-gap: 10px; 
+  grid-template-rows: 50px 1fr;
+  grid-template-columns: 2.6fr 10fr;
+  grid-gap: 15px; 
 }
 
 .contentWrapper {
   grid-area: cont;
-  background: #fff;
-  padding: 10px;
+  /* background: #fff; */
+  border-radius: 4px;
 }

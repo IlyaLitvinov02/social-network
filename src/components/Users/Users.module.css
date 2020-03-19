@@ -1,5 +1,8 @@
 .buttons {
-    width: 100px;
+    width: 90px;
+    height: 35px;
     margin: 0 auto;
-    padding-top: 10px;
+    border-radius: 5px;
+    border: 2px #2193FA solid;
+    background: #fff;
 }
