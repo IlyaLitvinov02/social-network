@@ -46,7 +46,8 @@
     outline: #888 3px solid;
 }
 
-.messagesInput input {
+.messagesInput textarea {
+    resize: none;
     box-sizing: border-box;
     width: 90%;
     height: 30px;
@@ -56,8 +57,9 @@
     padding: 0 5px;
     font: 20px Arial;
     outline: none;
-    line-height: 38px;
+    line-height: 26px;
     border: 2px #888 solid;
+    float: left;
 }
 
 

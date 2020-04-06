@@ -1,5 +1,5 @@
-import React from 'react';
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import React, { useEffect } from 'react';
+import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
 import './App.css';
 import Navbar from './components/Navbar/Navbar.jsx';
 import News from './components/News/News.jsx';
@@ -10,12 +10,19 @@ import ProfileContainer from './components/Profile/ProfileContainer';
 import HeaderContainer from './components/Header/HeaderContainer';
 import LoginPage from './components/Login/Login';
 import DialogsContainer from './components/Dialogs/DialogsContainer';
+import { connect } from 'react-redux';
+import Preloder from './components/common/Preloder/Preloder';
+import { initialize } from './redux/appReducer';
 
 
 
 
 
-function App() {
+const App = props => {
+   useEffect(props.initialize, [props.inizialized]);
+
+   if (!props.initialized) return <Preloder />
+
    return (
       <BrowserRouter>
          <div className='appWrapper'>
@@ -38,7 +45,7 @@ function App() {
 }
 
 
-export default App;
+export default connect(state => ({ initialized: state.app.initialized }), { initialize })(App);
 
 
 

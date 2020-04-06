@@ -12,7 +12,7 @@ function Header(props) {
                ? <img src={Ava} alt="" onClick={props.toggleIsDeployed} />
                : <Link to='/login/'>Log in</Link>}
             {props.isDeployed
-               && <div>
+               && <div className={s.hiddenBlock}>
                   <div>
                      <Link to={`/profile/${props.state.userId}`}>My profile</Link>
                   </div>

@@ -1,4 +1,4 @@
-import { changeTextareaValueActionCreator, addPostActionCreator } from "../../../redux/profileReducer";
+import { addPostActionCreator } from "../../../redux/profileReducer";
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 
@@ -12,13 +12,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        onTextareaValueChange: (event) => {
-            let action = changeTextareaValueActionCreator(event.target.value);
-            dispatch(action);
-        },
-        onAddPostBtnClick: () => {
-            let action = addPostActionCreator();
-            dispatch(action);
+        onAddPost: values => {
+            dispatch(addPostActionCreator(values.postInp));
         }
     };
 }

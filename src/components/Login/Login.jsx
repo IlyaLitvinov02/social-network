@@ -1,16 +1,13 @@
 import React from 'react';
 import LoginForm from './LoginForm';
-import { compose } from 'redux';
-import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { logIn } from '../../redux/authReducer';
 
 
 const Login = props => {
-    const { handleSubmit } = props;
-    const submit = values => {
-        const { email, password, rememberMe } = values;
+    const submit = ({ email, password, rememberMe }) => {
+        //const { email, password, rememberMe } = values;
         props.logIn(email, password, rememberMe);
     }
 
@@ -18,21 +15,16 @@ const Login = props => {
     return (
         <div>
             <h1>Login</h1>
-            <LoginForm formState={props.formState} handleSubmit={handleSubmit(submit)} />
+            <LoginForm onSubmit={submit} />
         </div>
-
-    )
+    );
 }
 
 
 const mstp = state => ({
-    formState: state.form.login,
     myId: state.auth.userId,
     isAuth: state.auth.isAuth
 });
 
 
-export default compose(
-    reduxForm({ form: 'login' }),
-    connect(mstp, { logIn })
-)(Login);
+export default connect(mstp, { logIn })(Login);

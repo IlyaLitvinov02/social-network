@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import Header from './Header.jsx';
-import { setAuthUserData, getAuthUserData, logOut } from '../../redux/authReducer.js';
+import { getAuthUserData, logOut } from '../../redux/authReducer.js';
 import { connect } from 'react-redux';
-import { getUserProfile } from '../../redux/profileReducer.js';
 
 
 
@@ -20,12 +19,10 @@ import { getUserProfile } from '../../redux/profileReducer.js';
 //     render() {
 //         return <Header state={this.props.state} />
 //     }
-// }
+// }y
 
 
 const HeaderContainerWithHooks = props => {
-    useEffect(props.getAuthUserData, [props.state.isLogged]);
-
     const [isDeployed, setIsDeployed] = useState(false);
 
     const toggleIsDeployed = () => {
@@ -36,12 +33,8 @@ const HeaderContainerWithHooks = props => {
 }
 
 
-const mapStateToProps = state => ({
-    state: state.auth
-});
+const mapStateToProps = state => ({ state: state.auth });
 
 
 
-export default connect(mapStateToProps, {
-    setAuthUserData, getAuthUserData, getUserProfile, logOut
-})(HeaderContainerWithHooks);
+export default connect(mapStateToProps, { getAuthUserData, logOut })(HeaderContainerWithHooks);

@@ -1,0 +1,11 @@
+.touched {
+    border: red solid 2px;
+}
+
+.loginForm input {
+    outline: none;
+}
+
+.loginForm input:focus {
+    border:  rgb(0, 126, 236) solid 2px;
+}

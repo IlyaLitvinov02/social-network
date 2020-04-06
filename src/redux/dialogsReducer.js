@@ -34,39 +34,36 @@ const dialogsReducer = (state = initialState, action) => {
                     ...state.messagesState,
                     textareaValue: action.text
                 }
-            };        
+            };
 
         case SEND_MESSAGE:                                                          // Отправка сообщения
 
             let date = new Date(),
-                hours = date.getHours(),
-                minutes = date.getMinutes(),
-                time = `${hours}:${minutes}`;
-
-            let messageObject = {
-                message: state.messagesState.textareaValue,
-                id: state.messagesState.messagesData.length + 1,
-                time: time,
-                className: action.className
-            };
+                messageObject = {
+                    message: action.message,
+                    id: state.messagesState.messagesData.length + 1,
+                    time: `${date.getHours()}:${date.getMinutes()}`,
+                    className: action.className
+                };
 
             return {
                 ...state,
                 messagesState: {
                     ...state.messagesState,
-                    messagesData: [...state.messagesState.messagesData, messageObject ],
+                    messagesData: [...state.messagesState.messagesData, messageObject],
                     textareaValue: ''
                 }
             };
-        
+
         default:
             return state;
     }
 }
 
-export const sendMessageActionCreator = (className) => ({
+export const sendMessageActionCreator = (className, message) => ({
     type: SEND_MESSAGE,
-    className: className
+    className,
+    message
 });
 export const changeMessagesTextareaValueActionCreator = (text) => ({
     type: CHANGE_MESSAGES_TEXTAREA_VALUE,

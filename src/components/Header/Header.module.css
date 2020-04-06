@@ -28,3 +28,10 @@ header {
     height: 30px;
     border-radius: 50%;
 }
+
+.loginBlock .hiddenBlock {
+    position: relative;
+    background: #fff;
+    border-radius: 5px;
+    border: 1px #EBEEF5 solid;  
+}

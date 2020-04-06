@@ -13,9 +13,8 @@ let mapStateToProps = (state) => {
 
 let mapDispatchToProps = (dispatch) => {
     return {
-        onSendBtnClick: () => {
-            let action = sendMessageActionCreator('outcoming');
-            dispatch(action);
+        onSend: (values) => {
+            dispatch(sendMessageActionCreator('outcoming', values.messageInp));
         },
 
         onTextareaValueChange: (event) => {
