@@ -1,50 +1,47 @@
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 //import s from './ProfileStatus.module.css';
 
 
 
-class ProfileStatus extends React.Component {
-   state = {
-      editMode: false,
-      status: this.props.status
+const ProfileStatus = props => {
+
+   const [editMode, setEditMode] = useState(false);
+   const [status, setStatus] = useState(props.status);
+
+   useEffect(() => {
+      setStatus(props.status)
+   }, [props.status]);
+
+   const toggleEditMode = isActive => {
+      if (props.myProfile) { setEditMode(isActive) }
    }
 
-   componentDidUpdate(prevProps) {
-      if (this.props.status !== prevProps.status) { this.setState({ status: this.props.status }) };
-   }
-
-   toggleEditMode = isActive => {
-      if (this.props.myProfile) { this.setState({ editMode: isActive }) };
-   }
-
-   saveStatus = (event) => {
+   const saveStatus = event => {
       if (event.key === 'Enter') {
-         this.props.updateStatus(this.state.status);
-         this.toggleEditMode(false)
+         props.updateStatus(status);
+         toggleEditMode(false);
       }
    }
 
-   render() {
-      return (
-         <>
-            {(!this.state.editMode)
-               ? <div>
-                  <span onClick={() => { this.toggleEditMode(true) }}>
-                     {this.props.status ? this.props.status : this.props.myProfile && 'Change status'}
-                  </span>
-               </div>
-               : <div>
-                  <input
-                     type="text"
-                     value={this.state.status || ''}
-                     onChange={(event) => { this.setState({ status: event.target.value }); }}
-                     onKeyUp={this.saveStatus}
-                     onBlur={() => { this.toggleEditMode(false) }}
-                     autoFocus={true} />
-               </div>}
-         </>
-      );
-   }
+   return (
+      <>
+         {!editMode
+            ? <div>
+               <span onClick={() => { toggleEditMode(true) }}>
+                  {props.status ? props.status : props.myProfile && 'Change status'}
+               </span>
+            </div>
+            : <div>
+               <input
+                  type="text"
+                  value={status || ''}
+                  onChange={(event) => { setStatus(event.target.value); }}
+                  onKeyUp={saveStatus}
+                  onBlur={() => { toggleEditMode(false) }}
+                  autoFocus={true} />
+            </div>}
+      </>
+   );
 }
 
 

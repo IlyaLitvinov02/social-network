@@ -5,10 +5,12 @@ import profileReducer from "./profileReducer";
 import dialogsReducer from "./dialogsReducer";
 import usersReducer from "./usersReducer";
 import authReducer from "./authReducer";
-import { appReducer } from "./appReducer";
+import appReducer from "./appReducer";
+import postsReducer from "./postsReducer";
 
 let reducers = combineReducers({
     profilePage: profileReducer,
+    posts: postsReducer,
     dialogsPage: dialogsReducer,
     usersPage: usersReducer,
     auth: authReducer,

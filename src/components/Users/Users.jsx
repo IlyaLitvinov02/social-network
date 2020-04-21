@@ -1,15 +1,15 @@
 import React from 'react';
-import User from './User/User';
 import s from './Users.module.css';
 import Preloder from '../common/Preloder/Preloder.jsx';
 import LoadMoreBtn from '../common/LoadMoreBtn/LoadMoreBtn.jsx';
+import UserContainer from './User/UserContainer';
 
 const Users = (props) => {
    return (
       <div>
          <div>
             {props.state.usersData.map(el =>
-               <User
+               <UserContainer
                   name={el.name}
                   id={el.id}
                   followed={el.followed}

@@ -1,58 +1,51 @@
-const SEND_MESSAGE = 'SEND-MESSAGE';
-const CHANGE_MESSAGES_TEXTAREA_VALUE = 'CHANGE-MESSAGES-TEXTAREA-VALUE';
+import { dialogsAPI } from "../api/api";
+
+const SEND_MESSAGE = 'dialogsReducer/SEND-MESSAGE';
+const SET_DIALOGS = 'dialogsReducer/SET_DIALOGS';
+const SET_MESSAGES = 'dialogsReducer/SET_MESSAGES';
 
 let initialState = {
     dialogsData: [
-        { name: 'AntiHype', id: 1 },
-        { name: 'Dark5665', id: 2 },
-        { name: 'UlukUluk', id: 3 },
-        { name: 'МЯКИШ', id: 4 },
-        { name: 'Перчик', id: 5 },
-        { name: 'Марио', id: 6 },
-        { name: 'Жопыч', id: 7 }
+        // { name: 'AntiHype', id: 1 },
+        // { name: 'Dark5665', id: 2 },
+        // { name: 'UlukUluk', id: 3 },
+        // { name: 'МЯКИШ', id: 4 },
+        // { name: 'Перчик', id: 5 },
+        // { name: 'Марио', id: 6 },
+        // { name: 'Жопыч', id: 7 }
     ],
 
-    messagesState: {
-        messagesData: [
-            { message: 'Прив че дел', time: '21:14', id: 1, className: 'outcoming' },
-            { message: 'Приват', id: 2, time: '21:14', className: 'incoming' }
-        ],
-
-        textareaValue: '',
-        messagesInputClass: ''
-    }
-}
+    messagesData: [
+        // { message: 'Прив че дел', time: '21:14', id: 1, className: 'outcoming' },
+        // { message: 'Приват', id: 2, time: '21:14', className: 'incoming' }
+    ],
+};
 
 
 const dialogsReducer = (state = initialState, action) => {
     switch (action.type) {
-        case CHANGE_MESSAGES_TEXTAREA_VALUE:                   // Изменение значения текстерии в диалогах
-
+        case SET_DIALOGS:
             return {
                 ...state,
-                messagesState: {
-                    ...state.messagesState,
-                    textareaValue: action.text
-                }
+                dialogsData: [...action.dialogs]     //needs refactoring
             };
-
-        case SEND_MESSAGE:                                                          // Отправка сообщения
-
-            let date = new Date(),
+        case SET_MESSAGES:
+            return {
+                ...state,
+                messagesData: [...action.messages]
+            };
+        case SEND_MESSAGE:
+            const date = new Date(),
                 messageObject = {
                     message: action.message,
-                    id: state.messagesState.messagesData.length + 1,
+                    id: state.messagesData.length + 1,
                     time: `${date.getHours()}:${date.getMinutes()}`,
                     className: action.className
                 };
 
             return {
                 ...state,
-                messagesState: {
-                    ...state.messagesState,
-                    messagesData: [...state.messagesState.messagesData, messageObject],
-                    textareaValue: ''
-                }
+                messagesData: [...state.messagesData, messageObject],
             };
 
         default:
@@ -60,14 +53,36 @@ const dialogsReducer = (state = initialState, action) => {
     }
 }
 
-export const sendMessageActionCreator = (className, message) => ({
-    type: SEND_MESSAGE,
-    className,
-    message
-});
-export const changeMessagesTextareaValueActionCreator = (text) => ({
-    type: CHANGE_MESSAGES_TEXTAREA_VALUE,
-    text: text,
-});
+
+export const setMessages = messages => ({ type: SET_MESSAGES, messages });
+export const sendMessage = (className, message) => ({ type: SEND_MESSAGE, className, message });
+export const setDialogs = dialogs => ({ type: SET_DIALOGS, dialogs });
+
+
+export const getDialogs = () => async dispatch => {
+    const response = await dialogsAPI.getDialogs();
+    dispatch(setDialogs(response.data));
+    console.log(response);
+}
+
+export const startChat = userId => async dispatch => {
+    const response = await dialogsAPI.startChat(userId);
+    console.log(response);
+}
+
+export const getMessages = userId => async dispatch => {
+    const response = await dialogsAPI.getMessages(userId);
+    dispatch(setMessages(response.data.items));
+    console.log(response);
+}
+
+export const postMessage = (userId, message) => async dispatch => {
+    const response = await dialogsAPI.postMessage(userId, message);
+    console.log(response);
+    if (response.data.resultCode === 0) {
+        dispatch(sendMessage('outcoming', message))
+    }
+}
+
 
 export default dialogsReducer;

@@ -3,15 +3,10 @@ body {
   background: #F5F7FA;
 }
 
-header {
-  border-radius: 5px;
-  border: 1px #EBEEF5 solid;
-}
 
 .appWrapper {
   width: 70%;
   margin: 0 auto;
-  margin-bottom: 10px;
   display: grid;
 
   grid-template-areas:

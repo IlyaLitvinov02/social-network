@@ -1,5 +1,5 @@
 import React, { useEffect } from 'react';
-import { BrowserRouter, Route, Switch, withRouter } from "react-router-dom";
+import { BrowserRouter, Route, Switch, Redirect } from "react-router-dom";
 import './App.css';
 import Navbar from './components/Navbar/Navbar.jsx';
 import News from './components/News/News.jsx';
@@ -13,39 +13,82 @@ import DialogsContainer from './components/Dialogs/DialogsContainer';
 import { connect } from 'react-redux';
 import Preloder from './components/common/Preloder/Preloder';
 import { initialize } from './redux/appReducer';
+import { getAuthedUserId } from './redux/selectors/auth-selectors';
+import DocumentTitle from './components/common/DocumentTitle/DocumentTitle';
 
 
 
 
 
-const App = props => {
-   useEffect(props.initialize, [props.inizialized]);
+const App = ({
+    initialize,
+    initialized
+ }) => {
 
-   if (!props.initialized) return <Preloder />
+    useEffect(() => {
+        console.log('useEffect');
+        initialize();
+    }, [initialize]);
 
-   return (
-      <BrowserRouter>
-         <div className='appWrapper'>
-            <HeaderContainer />
-            <Navbar />
-            <div className='contentWrapper'>
-               <Switch>
-                  <Route path='/profile/:userId?' render={() => <ProfileContainer />} />
-                  <Route path='/dialogs' render={() => <DialogsContainer />} />
-                  <Route path='/users' render={() => <UsersContainer />} />
-                  <Route path='/news' render={() => <News />} />
-                  <Route path='/music' render={() => <Music />} />
-                  <Route path='/settings' render={() => <Settings />} />
-                  <Route path='/login' render={() => <LoginPage />} />
-               </Switch>
-            </div>
-         </div>
-      </BrowserRouter>
-   );
+    if (!initialized) return <Preloder />
+
+    return (
+        <BrowserRouter>
+            <DocumentTitle title='Samurai Network'>
+                <div className='appWrapper'>
+                    <HeaderContainer />
+                    <Navbar />
+                    <div className='contentWrapper'>
+                        <Switch>
+                            <Route exact path='/'>
+                                <Redirect to='/profile' />
+                            </Route>
+                            <Route path='/profile/:userId?'>
+                                <ProfileContainer />
+                            </Route>
+                            <Route path='/dialogs/:userId?'>
+                                <DocumentTitle title='Dialogs'>
+                                    <DialogsContainer />
+                                </DocumentTitle>
+                            </Route>
+                            <Route path='/users'>
+                                <DocumentTitle title='Users'>
+                                    <UsersContainer />
+                                </DocumentTitle>
+                            </Route>
+                            <Route path='/news'>
+                                <DocumentTitle title='News'>
+                                    <News />
+                                </DocumentTitle>
+                            </Route>
+                            <Route path='/music'>
+                                <DocumentTitle title='Music'>
+                                    <Music />
+                                </DocumentTitle>
+                            </Route>
+                            <Route path='/settings'>
+                                <DocumentTitle title='Settings'>
+                                    <Settings />
+                                </DocumentTitle>
+                            </Route>
+                            <Route path='/login'>
+                                <DocumentTitle title='Login'>
+                                    <LoginPage />
+                                </DocumentTitle>
+                            </Route>
+                        </Switch>
+                    </div>
+                </div>
+            </DocumentTitle>
+        </BrowserRouter>
+    );
 }
 
 
-export default connect(state => ({ initialized: state.app.initialized }), { initialize })(App);
+export default connect(state => ({
+    initialized: state.app.initialized,
+    authorizedUserId: getAuthedUserId(state)
+}), { initialize })(App);
 
 
 

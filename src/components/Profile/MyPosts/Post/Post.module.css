@@ -1,9 +1,6 @@
 
 .post {
   box-sizing: border-box;
-  border-radius: 5px;
-  border: 1px #EBEEF5 solid;
-  background: #fff;
   padding: 20px 10px 20px 15px;
   width: 100%;
   font: 20px Arial; 

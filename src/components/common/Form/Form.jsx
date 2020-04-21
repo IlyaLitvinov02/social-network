@@ -1,20 +1,20 @@
 import React from 'react';
-//import s from './MyPosts.module.css';
+import s from './Form.module.css';
 import { Field } from 'redux-form';
 
 
 const Form = props => {
     const submit = values => {
-        props.submitMyForm(values);
+        props.submitHandler(values);
         props.reset()
     }
 
     return (
         <form onSubmit={props.handleSubmit(submit)}>
-            <div>
+            <div className={s.textareaWrapper}>
                 <Field type='text' component='textarea' placeholder={props.label} name={props.name} />
             </div>
-            <div>
+            <div className={s.buttonWrapper}>
                 <button disabled={props.submitting || props.pristine}>{props.button}</button>
             </div>
         </form>

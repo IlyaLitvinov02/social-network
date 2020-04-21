@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useState } from 'react';
 import Header from './Header.jsx';
 import { getAuthUserData, logOut } from '../../redux/authReducer.js';
 import { connect } from 'react-redux';

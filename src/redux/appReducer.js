@@ -1,12 +1,12 @@
 import { getAuthUserData } from "./authReducer";
 
-const INITIALIZE_SUCCESSED = 'INITIALIZE_SUCCESSED';
+const INITIALIZE_SUCCESSED = 'appReducer/INITIALIZE_SUCCESSED';
 
 const initialState = {
     initialized: false
 };
 
-export const appReducer = (state = initialState, action) => {
+export default (state = initialState, action) => {
     switch (action.type) {
         case INITIALIZE_SUCCESSED:
             return {

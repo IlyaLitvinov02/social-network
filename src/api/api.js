@@ -17,10 +17,10 @@ export const usersAPI = {
             .then(response => response.data);
     },
 
-    follow(userId) {
-        return instance
-            .post(`follow/${userId}`)
-            .then(response => response.data);
+    async follow(userId) {
+        const response = await instance
+            .post(`follow/${userId}`);
+        return response.data;
     },
 
     unfollow(userId) {
@@ -62,5 +62,29 @@ export const authAPI = {
     logOut() {
         return instance
             .post('auth/logout');
+    }
+}
+
+
+
+export const dialogsAPI = {
+    startChat(userId) {
+        return instance
+            .put(`dialogs/${userId}`);
+    },
+
+    getDialogs() {
+        return instance
+            .get('dialogs');
+    },
+
+    getMessages(userId) {
+        return instance
+            .get(`dialogs/${userId}/messages`);
+    },
+
+    postMessage(userId, message) {
+        return instance
+            .post(`dialogs/${userId}/messages`, { message });
     }
 }

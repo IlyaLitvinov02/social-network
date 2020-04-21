@@ -6,6 +6,7 @@ import Form from '../../common/Form/Form.jsx';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
+import Container from '../../common/StyledContainer/Container';
 
 
 
@@ -17,13 +18,13 @@ const PostForm = compose(
 
 
 
-function MyPosts(props) {
+const MyPosts = props => {
     return (
         <div className={s.myPosts}>
             {(props.myProfile)
-                && <div className={s.postsInp}>
-                    <PostForm submitMyForm={props.onAddPost} name='postInp' label='Поделитесь мыслями...' button='Add post'/>
-                </div>}
+                && <Container className={s.postsInp}>
+                    <PostForm submitHandler={props.onAddPost} name='postInp' label='Поделитесь мыслями...' button='Add post'/>
+                </Container>}
             {props.state.postData.map(post => <Post text={post.text} img={post.img} time={post.time} key={post.id} />)}
         </div>
     );

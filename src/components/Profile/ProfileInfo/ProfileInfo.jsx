@@ -2,11 +2,12 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Ava from './../../../img/ava.png';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
+import Container from '../../common/StyledContainer/Container';
 
 
 const ProfileInfo = props => {
     return (
-        <div className={s.bio}>
+        <Container className={s.bio}>
             <div>
                 <img src={(props.state.userProfile.photos.large) ? props.state.userProfile.photos.large : Ava} alt='' />
             </div>
@@ -25,7 +26,7 @@ const ProfileInfo = props => {
                     <span>{props.state.userProfile.lookingForAJobDescription}</span>
                 </div>
             </div>
-        </div>
+        </Container>
     );
 }
 

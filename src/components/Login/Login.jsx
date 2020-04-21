@@ -1,30 +1,38 @@
 import React from 'react';
 import LoginForm from './LoginForm';
 import { connect } from 'react-redux';
-import { Redirect } from 'react-router-dom';
+import { Redirect, withRouter } from 'react-router-dom';
 import { logIn } from '../../redux/authReducer';
+import { getAuthedUserId, getIsAuth } from '../../redux/selectors/auth-selectors';
+import { compose } from 'redux';
+import Container from '../common/StyledContainer/Container';
 
 
 const Login = props => {
+
     const submit = ({ email, password, rememberMe }) => {
-        //const { email, password, rememberMe } = values;
         props.logIn(email, password, rememberMe);
     }
 
-    if (props.isAuth) return <Redirect to={`/profile/${props.myId}`} />
+    const path = props.location.state ? props.location.state.referrer : '/profile';
+
+    if (props.isAuth && props.myId) return <Redirect to={path} />
     return (
-        <div>
+        <Container>
             <h1>Login</h1>
             <LoginForm onSubmit={submit} />
-        </div>
+        </Container>
     );
 }
 
 
 const mstp = state => ({
-    myId: state.auth.userId,
-    isAuth: state.auth.isAuth
+    myId: getAuthedUserId(state),
+    isAuth: getIsAuth(state)
 });
 
 
-export default connect(mstp, { logIn })(Login);
+export default compose(
+    connect(mstp, { logIn }),
+    withRouter
+)(Login);

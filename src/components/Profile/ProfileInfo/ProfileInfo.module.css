@@ -2,9 +2,6 @@
 
 .bio {
   box-sizing: border-box;
-  border: 1px #EBEEF5 solid;
-  border-radius: 5px;
-  background: #fff;
   width: 100%;
   padding: 10px;
   display: grid;

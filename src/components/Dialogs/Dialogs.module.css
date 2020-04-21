@@ -33,50 +33,7 @@
     padding: 3px;
     position: relative;
     overflow: auto;
+    height: 500px;
 }
 
 
-.messagesInput {
-    box-sizing: border-box;
-    width: 100%;
-    position: absolute;
-    bottom: 2px;
-    left: 0px;
-    background: #888;
-    outline: #888 3px solid;
-}
-
-.messagesInput textarea {
-    resize: none;
-    box-sizing: border-box;
-    width: 90%;
-    height: 30px;
-    background: #fff;
-    border: none;
-    color: #888;
-    padding: 0 5px;
-    font: 20px Arial;
-    outline: none;
-    line-height: 26px;
-    border: 2px #888 solid;
-    float: left;
-}
-
-
-
-.messagesInput button {
-    width: 10%;
-    height: 30px;
-    border: none;
-    outline: none;
-    background: #fff;
-    font: 20px Arial;
-    color: #888;
-    cursor: pointer;
-    transition: transform 0.05s linear;
-    border: 2px #888 solid;
-}
-
-.messagesInput button:active {
-    transform: scale(0.95);
-}

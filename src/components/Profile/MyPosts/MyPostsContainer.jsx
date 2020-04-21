@@ -1,19 +1,21 @@
-import { addPostActionCreator } from "../../../redux/profileReducer";
+import { addPost } from "../../../redux/postsReducer";
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
+import { compose } from "redux";
+import { memo } from "react";
 
 
 
-let mapStateToProps = (state) => {
+let mapStateToProps = state => {
     return {
-        state: state.profilePage.myPostsState
+        state: state.posts
     };
 }
 
-let mapDispatchToProps = (dispatch) => {
+let mapDispatchToProps = dispatch => {
     return {
         onAddPost: values => {
-            dispatch(addPostActionCreator(values.postInp));
+            dispatch(addPost(values.postInp));
         }
     };
 }
@@ -21,4 +23,7 @@ let mapDispatchToProps = (dispatch) => {
 
 
 
-export default connect(mapStateToProps, mapDispatchToProps)(MyPosts);
+export default compose( 
+    connect(mapStateToProps, mapDispatchToProps),
+    memo
+)(MyPosts);

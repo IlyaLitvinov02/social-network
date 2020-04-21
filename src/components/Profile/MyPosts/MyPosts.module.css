@@ -2,17 +2,16 @@
   margin-top: 13px;
 }
 
-.postsInp {
+ /* .postsInp {
   border-radius: 5px;
   border: 1px #EBEEF5 solid;
   background: #fff;
   position: relative;
   padding-bottom: 25px;
 
-}
-
+} */
+ /*
 .postsInp textarea {
-  resize: none;
   box-sizing: border-box;
   width: 100%;
   height: 40px;
@@ -53,4 +52,4 @@
 
 .postsInp button:active {
   transform: scale(0.95);
-}
+} */

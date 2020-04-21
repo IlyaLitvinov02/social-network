@@ -7,7 +7,7 @@ import Item from './Item/Item.jsx';
 
 const DialogItems = (props) => {
 
-    let dialogElements = props.state.map(dialog => <Item name={dialog.name} id={dialog.id} key={dialog.id} />);
+    let dialogElements = props.state.map(dialog => <Item name={dialog.userName} id={dialog.id} key={dialog.id} />);
 
     return (
         <div className={s.dialogItems}>

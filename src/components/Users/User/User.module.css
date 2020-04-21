@@ -1,21 +1,18 @@
 .userItem {
-    background-color: #fff;
-    border-radius: 5px;
-    border: 1px #EBEEF5 solid;
     margin-bottom: 13px;
     display: grid;
     grid-template-columns: 1fr 9fr 1fr;
     padding: 15px;
 }
 
-.userItem a {
+.userName a {
     text-decoration: none;
     color: #000;
     font: 18px Arial;
     padding-left: 20px;
 }
 
-.followBtn {
+.buttons button, .buttons a {
     display: block;
     line-height: 20px;
     text-decoration: none;
