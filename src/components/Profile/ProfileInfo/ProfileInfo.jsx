@@ -7,7 +7,7 @@ import PhotoInput from './ProfilePhotoInput/PhotoInput';
 import ProfileAbout from './ProfileAbout/ProfileAbout';
 
 
-const ProfileInfo = ({ myProfile, uploadPhoto, ...props }) => {
+const ProfileInfo = ({ myProfile, updateProfile, uploadPhoto, ...props }) => {
     return (
         <Container className={s.bio}>
             <div>
@@ -25,7 +25,10 @@ const ProfileInfo = ({ myProfile, uploadPhoto, ...props }) => {
                         updateStatus={props.updateStatus} />
                 </div>
                 <div className={s.info}>
-                    <ProfileAbout myProfile={myProfile} userProfile={props.state.userProfile} />
+                    <ProfileAbout
+                        myProfile={myProfile}
+                        userProfile={props.state.userProfile}
+                        updateProfile={updateProfile} />
                 </div>
             </div>
         </Container>

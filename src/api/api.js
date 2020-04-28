@@ -55,15 +55,9 @@ export const profileAPI = {
             });
     },
 
-    updateProfile(
-        aboutMe,
-        contacts,
-        lookingForAJob,
-        lookingForAJobDescription,
-        fullName
-    ) {
+    updateProfile(dataObject) {
         return instance
-            .put('profile')
+            .put('profile', dataObject);
     }
 }
 

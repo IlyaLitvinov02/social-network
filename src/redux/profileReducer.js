@@ -24,7 +24,10 @@ const profileReducer = (state = initialState, action) => {
                 ...state,
                 profileState: {
                     ...state.profileState,
-                    userProfile: { ...action.userProfile }
+                    userProfile: {
+                        ...state.profileState.userProfile,
+                        ...action.userProfile,
+                    }
                 }
             };
         case SET_STATUS:
@@ -62,6 +65,7 @@ export const setLoading = isLoading => ({ type: SET_LOADING, isLoading });
 export const setStatus = status => ({ type: SET_STATUS, status });
 export const setAuthedUserPhotos = photos => ({ type: SET_AUTHED_USER_PHOTOS, photos })
 
+
 export const getUserProfile = userId => async dispatch => {
     dispatch(setLoading(true));
     const response = await profileAPI.getUserProfile(userId);
@@ -88,5 +92,33 @@ export const uploadPhoto = formData => async dispatch => {
         dispatch(setAuthedUserPhotos(response.data.data.photos));
     }
 }
+
+export const updateProfile = ({
+    aboutMe,
+    lookingForAJob,
+    lookingForAJobDescription,
+    fullName,
+    facebook,
+    vk,
+    youtube
+}) => async dispatch => {
+    const dataObject = {
+        aboutMe,
+        lookingForAJob,
+        lookingForAJobDescription,
+        fullName,
+        contacts: {
+            facebook,
+            vk,
+            youtube
+        }
+    }
+    const response = await profileAPI.updateProfile(dataObject);
+
+    if (response.data.resultCode === 0) {
+        dispatch(setUserProfile(dataObject));
+    }
+}
+
 
 export default profileReducer;

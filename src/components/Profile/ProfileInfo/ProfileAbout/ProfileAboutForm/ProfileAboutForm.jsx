@@ -1,12 +1,13 @@
-import React, { useCallback, useEffect } from 'react';
+import React, { useEffect, useMemo } from 'react';
 import { Field, reduxForm } from 'redux-form';
 import { compose } from 'redux';
 import { connect } from 'react-redux';
+import s from './ProfileAboutForm.module.css';
 
 
 
 const renderField = ({ input, label, type }) => {
-    return <div>
+    return <div className={s.fieldRow}>
         <div>{label}</div>
         <div>
             <input {...input} type={type} />
@@ -25,40 +26,67 @@ const ProfileAboutForm = ({
     ...props
 }) => {
 
-    const initializeFields = useCallback(() => {
-        initialize({
-            fullName: fullName
-        })
-    }, [initialize, fullName]);
+    const initialObject = useMemo(() => ({
+        aboutMe,
+        lookingForAJob,
+        lookingForAJobDescription,
+        fullName,
+        ...contacts,
+    }), [
+        aboutMe,
+        lookingForAJob,
+        lookingForAJobDescription,
+        fullName,
+        contacts
+    ])
+
 
     useEffect(() => {
-        initializeFields()
-    }, [initializeFields]);
+        initialize(initialObject)
+    }, [initialize, initialObject]);
 
 
     return (
-        <form>
+        <form onSubmit={props.handleSubmit}>
             <Field
                 component={renderField}
                 label='Full name'
                 type='text'
                 name='fullName' />
-            <Field
-                defaultValue={aboutMe || ''}
-                component={renderField}
-                label='About me'
-                type='text'
-                name='aboutMe' />
-            <Field
-                // defaultChecked={lookingForAJob}
-                component='input'
-                type='checkbox'
-                name='lookingForAJob' /> Looking for a job
-            <Field
-                defaultValue={lookingForAJobDescription || ''}
-                component={renderField}
-                type='text'
-                name='lookingForAJobDescription' />
+            <fieldset>
+                <Field
+                    component={renderField}
+                    label='About me'
+                    type='text'
+                    name='aboutMe' />
+                <Field
+                    component='input'
+                    type='checkbox'
+                    name='lookingForAJob' /> Looking for a job
+                <Field
+                    label='A job I look for'
+                    component={renderField}
+                    type='text'
+                    name='lookingForAJobDescription' />
+            </fieldset>
+            <fieldset>
+                <legend>Contacts</legend>
+                <Field
+                    label='Facebook'
+                    component={renderField}
+                    type='text'
+                    name='facebook' />
+                <Field
+                    label='VK'
+                    component={renderField}
+                    type='text'
+                    name='vk' />
+                <Field
+                    label='YouTube'
+                    component={renderField}
+                    type='text'
+                    name='youtube' />
+            </fieldset>
 
             <button type="submit" disabled={props.submitting}>Submit</button>
         </form>
