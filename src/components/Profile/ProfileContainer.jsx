@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import Profile from './Profile.jsx';
 import { connect } from 'react-redux';
-import { getUserProfile, getStatus, updateStatus } from '../../redux/profileReducer.js';
+import { getUserProfile, getStatus, updateStatus, uploadPhoto } from '../../redux/profileReducer.js';
 import { withRouter } from "react-router-dom";
 import { compose } from 'redux';
 import withRedirect from '../../hoc/withRedirect.jsx';
@@ -10,17 +10,16 @@ import { getAuthedUserId } from '../../redux/selectors/auth-selectors.js';
 
 const ProfileContainer = props => {
    const { getUserProfile, getStatus, myId } = props;
+   const userId = props.match.params.userId
+      ? props.match.params.userId
+      : myId;
 
    useEffect(() => {
-      const userId = props.match.params.userId
-         ? props.match.params.userId
-         : myId;
       getUserProfile(userId);
       getStatus(userId);
    },
       [
-         props.match.params.userId,
-         myId,
+         userId,
          getUserProfile,
          getStatus
       ]
@@ -30,8 +29,9 @@ const ProfileContainer = props => {
    return (
       <Profile
          state={props.state}
-         myProfile={parseInt(props.match.params.userId, 10) === myId}
-         updateStatus={props.updateStatus} />
+         myProfile={parseInt(userId, 10) === myId}
+         updateStatus={props.updateStatus}
+         uploadPhoto={props.uploadPhoto} />
    );
 }
 
@@ -42,9 +42,8 @@ const mapStateToProps = state => ({
 });
 
 
-
 export default compose(
-   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus }),
+   connect(mapStateToProps, { getUserProfile, getStatus, updateStatus, uploadPhoto }),
    withRouter,
    withRedirect
 )(ProfileContainer);

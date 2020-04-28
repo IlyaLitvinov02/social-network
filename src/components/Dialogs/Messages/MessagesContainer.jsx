@@ -1,4 +1,4 @@
-import { sendMessage, getMessages, postMessage } from '../../../redux/dialogsReducer';
+import { getMessages, postMessage } from '../../../redux/dialogsReducer';
 import Messages from './Messages';
 import { connect } from 'react-redux';
 import React, { useEffect } from 'react';

@@ -2,14 +2,17 @@ import React from 'react';
 import s from './ProfileInfo.module.css';
 import Ava from './../../../img/ava.png';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
-import Container from '../../common/StyledContainer/Container';
+import Container from '../../common/StyledContainer/StyledContainer';
+import PhotoInput from './ProfilePhotoInput/PhotoInput';
+import ProfileAbout from './ProfileAbout/ProfileAbout';
 
 
-const ProfileInfo = props => {
+const ProfileInfo = ({ myProfile, uploadPhoto, ...props }) => {
     return (
         <Container className={s.bio}>
             <div>
                 <img src={(props.state.userProfile.photos.large) ? props.state.userProfile.photos.large : Ava} alt='' />
+                <PhotoInput myProfile={myProfile} uploadPhoto={uploadPhoto} />
             </div>
             <div>
                 <div>
@@ -18,12 +21,11 @@ const ProfileInfo = props => {
                 <div>
                     <ProfileStatus
                         status={props.state.status}
-                        myProfile={props.myProfile}
+                        myProfile={myProfile}
                         updateStatus={props.updateStatus} />
                 </div>
                 <div className={s.info}>
-                    {/* <span>{props.state.userProfile.lookingForAJob ? 'Looking for a job right now' : 'I don\'t need a job'}</span> */}
-                    <span>{props.state.userProfile.lookingForAJobDescription}</span>
+                    <ProfileAbout myProfile={myProfile} userProfile={props.state.userProfile} />
                 </div>
             </div>
         </Container>

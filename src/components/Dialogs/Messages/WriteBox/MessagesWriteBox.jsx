@@ -4,8 +4,8 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import s from './WriteBox.module.css';
-import Container from '../../../common/StyledContainer/Container';
+//import s from './WriteBox.module.css';
+import Container, { StyledWriteBox } from '../../../common/StyledContainer/StyledContainer';
 
 
 const WriteBoxForm = compose(
@@ -16,8 +16,9 @@ const WriteBoxForm = compose(
 
 export default ({ userName, userId, submitHandler, closeWriteBox }) => {
     return (
-        <div className={s.writeBox}>
-            <Container className={s.writeBoxContainer}>
+        // <div className={s.writeBox}>
+        <StyledWriteBox>
+            <Container>
                 <div>
                     <span>{userName}</span>
                 </div>
@@ -29,6 +30,7 @@ export default ({ userName, userId, submitHandler, closeWriteBox }) => {
                     <button onClick={closeWriteBox}>Cancel</button>
                 </div>
             </Container>
-        </div>
+        </StyledWriteBox>
+        // </div>
     );
 }

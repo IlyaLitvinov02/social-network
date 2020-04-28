@@ -37,7 +37,7 @@ const dialogsReducer = (state = initialState, action) => {
         case SEND_MESSAGE:
             const date = new Date(),
                 messageObject = {
-                    message: action.message,
+                    body: action.message,
                     id: state.messagesData.length + 1,
                     time: `${date.getHours()}:${date.getMinutes()}`,
                     className: action.className

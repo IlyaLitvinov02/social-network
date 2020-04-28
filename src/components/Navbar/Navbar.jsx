@@ -3,7 +3,7 @@ import s from './Navbar.module.css';
 import { NavLink } from "react-router-dom";
 import { connect } from 'react-redux';
 import { getAuthedUserId } from '../../redux/selectors/auth-selectors';
-import Container from '../common/StyledContainer/Container';
+import Container from '../common/StyledContainer/StyledContainer';
 
 const Navbar = props => {
     const icon = `${s.icon} `;
@@ -11,6 +11,7 @@ const Navbar = props => {
         <nav className={s.nav}>
             <Container className={s.navWrap}>
                 <NavLink
+                    exact
                     to='/profile'
                     activeClassName={s.active}>
                     <div className={icon + s.profileIcon}></div>

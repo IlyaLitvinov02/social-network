@@ -5,18 +5,18 @@ import { Redirect, withRouter } from 'react-router-dom';
 import { logIn } from '../../redux/authReducer';
 import { getAuthedUserId, getIsAuth } from '../../redux/selectors/auth-selectors';
 import { compose } from 'redux';
-import Container from '../common/StyledContainer/Container';
+import Container from '../common/StyledContainer/StyledContainer';
 
 
-const Login = props => {
+const Login = ({ isAuth, myId, logIn, ...props }) => {
 
     const submit = ({ email, password, rememberMe }) => {
-        props.logIn(email, password, rememberMe);
+        logIn(email, password, rememberMe);
     }
 
     const path = props.location.state ? props.location.state.referrer : '/profile';
 
-    if (props.isAuth && props.myId) return <Redirect to={path} />
+    if (isAuth && myId) return <Redirect to={path} />
     return (
         <Container>
             <h1>Login</h1>

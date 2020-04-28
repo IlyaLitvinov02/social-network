@@ -6,7 +6,7 @@ import Form from '../../common/Form/Form.jsx';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import Container from '../../common/StyledContainer/Container';
+import Container from '../../common/StyledContainer/StyledContainer';
 
 
 

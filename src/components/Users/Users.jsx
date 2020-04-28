@@ -21,7 +21,7 @@ const Users = (props) => {
          <div className={s.buttons}>
             {(props.state.isLoading)
                ? <Preloder />
-               : <LoadMoreBtn loadMore={props.loadMore}/>}
+               : <LoadMoreBtn loadMore={props.loadMore} />}
          </div>
       </div>
    );

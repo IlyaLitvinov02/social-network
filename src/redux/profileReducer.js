@@ -3,6 +3,7 @@ import { profileAPI } from "../api/api";
 const
     SET_USER_PROFILE = 'profileReducer/SET_USER_PROFILE',
     SET_LOADING = 'profileReducer/SET_LOADING',
+    SET_AUTHED_USER_PHOTOS = 'profileReducer/SET_AUTHED_USER_PHOTOS',
     SET_STATUS = 'profileReducer/SET_STATUS';
 
 let initialState = {
@@ -34,6 +35,17 @@ const profileReducer = (state = initialState, action) => {
                     status: action.status
                 }
             };
+        case SET_AUTHED_USER_PHOTOS:
+            return {
+                ...state,
+                profileState: {
+                    ...state.profileState,
+                    userProfile: {
+                        ...state.profileState.userProfile,
+                        photos: { ...action.photos }
+                    }
+                }
+            };
         case SET_LOADING:
             return {
                 ...state,
@@ -48,6 +60,7 @@ const profileReducer = (state = initialState, action) => {
 export const setUserProfile = userProfile => ({ type: SET_USER_PROFILE, userProfile });
 export const setLoading = isLoading => ({ type: SET_LOADING, isLoading });
 export const setStatus = status => ({ type: SET_STATUS, status });
+export const setAuthedUserPhotos = photos => ({ type: SET_AUTHED_USER_PHOTOS, photos })
 
 export const getUserProfile = userId => async dispatch => {
     dispatch(setLoading(true));
@@ -66,6 +79,13 @@ export const updateStatus = status => async dispatch => {
     const response = await profileAPI.updateStatus(status);
     if (response.data.resultCode === 0) {
         dispatch(setStatus(status));
+    }
+}
+
+export const uploadPhoto = formData => async dispatch => {
+    const response = await profileAPI.uploadPhoto(formData);
+    if (response.data.resultCode === 0) {
+        dispatch(setAuthedUserPhotos(response.data.data.photos));
     }
 }
 

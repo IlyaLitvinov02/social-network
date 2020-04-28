@@ -7,33 +7,16 @@
 
 .dialogItems a {
     text-decoration: none;
-    color: black;
+    /*color: black;*/
     display: block;
     font: 18px Arial;
-    border-bottom: 1px #888 solid;
+    /* border-bottom: 1px #888 solid; */
     padding: 10px 5px;
 }
 
-.dialogItems a:hover {
+/* .dialogItems a:hover {
     background: #888;
     color: white;
-}
-
-
-
-
-/* СТИЛИ МЕССЕДЖЕЙ */
-
-
-
-
-.messages {
-    border: #888 3px solid;
-    border-bottom: none;
-    padding: 3px;
-    position: relative;
-    overflow: auto;
-    height: 500px;
-}
+} */
 
 

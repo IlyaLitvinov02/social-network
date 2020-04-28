@@ -22,15 +22,12 @@ const renderField = ({
     input,
     label,
     type,
-    meta: { touched, error } }) => {
-    return (
-        <>
-            <input {...input} type={type} placeholder={label} className={touched ? (error && s.touched) : ''} />
-            {touched
-                && (error && <span>{label + ' ' + error}</span>)}
-        </>
-    );
-}
+    meta: { touched, error }
+}) => <>
+        <input {...input} type={type} placeholder={label} className={touched ? (error && s.touched) : ''} />
+        {touched
+            && (error && <span>{label + ' ' + error}</span>)}
+    </>
 
 
 

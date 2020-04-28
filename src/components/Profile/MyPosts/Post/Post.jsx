@@ -1,6 +1,6 @@
 import React from 'react';
 import s from './Post.module.css';
-import Container from '../../../common/StyledContainer/Container';
+import Container from '../../../common/StyledContainer/StyledContainer';
 
 
 

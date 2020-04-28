@@ -1,0 +1,10 @@
+.messages {
+    overflow: auto;
+    height: 500px;
+} 
+
+.wrapper {
+    border: 1px solid grey;
+
+}
+

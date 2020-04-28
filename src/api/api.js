@@ -43,7 +43,27 @@ export const profileAPI = {
 
     updateStatus(status) {
         return instance
-            .put(`profile/status`, { status });
+            .put('profile/status', { status });
+    },
+
+    uploadPhoto(formData) {
+        return instance
+            .put('profile/photo', formData, {
+                headers: {
+                    'Content-Type': 'multipart/form-data'
+                }
+            });
+    },
+
+    updateProfile(
+        aboutMe,
+        contacts,
+        lookingForAJob,
+        lookingForAJobDescription,
+        fullName
+    ) {
+        return instance
+            .put('profile')
     }
 }
 
@@ -83,8 +103,8 @@ export const dialogsAPI = {
             .get(`dialogs/${userId}/messages`);
     },
 
-    postMessage(userId, message) {
+    postMessage(userId, body) {
         return instance
-            .post(`dialogs/${userId}/messages`, { message });
+            .post(`dialogs/${userId}/messages`, { body });
     }
 }

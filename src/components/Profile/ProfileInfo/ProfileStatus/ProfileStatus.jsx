@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import StyledContainer, { StyledWriteBox } from '../../../common/StyledContainer/StyledContainer';
 //import s from './ProfileStatus.module.css';
 
 
@@ -18,8 +19,9 @@ const ProfileStatus = props => {
 
    const saveStatus = event => {
       if (event.key === 'Enter') {
-         props.updateStatus(status);
-         toggleEditMode(false);
+         props.updateStatus(status).then(() => {
+            toggleEditMode(false);
+         });
       }
    }
 
@@ -31,15 +33,17 @@ const ProfileStatus = props => {
                   {props.status ? props.status : props.myProfile && 'Change status'}
                </span>
             </div>
-            : <div>
-               <input
-                  type="text"
-                  value={status || ''}
-                  onChange={(event) => { setStatus(event.target.value); }}
-                  onKeyUp={saveStatus}
-                  onBlur={() => { toggleEditMode(false) }}
-                  autoFocus={true} />
-            </div>}
+            : <StyledWriteBox>
+               <StyledContainer>
+                  <input
+                     type="text"
+                     value={status || ''}
+                     onChange={(event) => { setStatus(event.target.value); }}
+                     onKeyUp={saveStatus}
+                     onBlur={() => { toggleEditMode(false) }}
+                     autoFocus={true} />
+               </StyledContainer>
+            </StyledWriteBox>}
       </>
    );
 }

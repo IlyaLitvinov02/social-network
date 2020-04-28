@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from "react-router-dom";
 import s from './User.module.css';
 import avatar from '../../../img/ava.png';
-import Container from '../../common/StyledContainer/Container';
+import Container from '../../common/StyledContainer/StyledContainer';
 import MessagesWriteBox from '../../Dialogs/Messages/WriteBox/MessagesWriteBox';
 
 const User = (props) => {

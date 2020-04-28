@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import s from './Dialogs.module.css';
 import MessagesContainer from './Messages/MessagesContainer';
 import DialogItemsContainer from './DialogItems/DialogItemsContainer';

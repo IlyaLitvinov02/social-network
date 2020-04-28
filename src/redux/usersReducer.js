@@ -15,7 +15,7 @@ let initialState = {
    usersData: [],
    totalUsersCount: 0,
    pageSize: 4,
-   currentPage: 828,   ///////////////////////////////////////
+   currentPage: 870,   ///////////////////////////////////////
    isLoading: false,
    followingInProgress: []
 }
