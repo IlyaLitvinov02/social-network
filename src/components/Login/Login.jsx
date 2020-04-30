@@ -8,10 +8,16 @@ import { compose } from 'redux';
 import Container from '../common/StyledContainer/StyledContainer';
 
 
-const Login = ({ isAuth, myId, logIn, ...props }) => {
+const Login = ({
+    isAuth,
+    myId,
+    logIn,
+    captchaUrl,
+    ...props
+}) => {
 
-    const submit = ({ email, password, rememberMe }) => {
-        logIn(email, password, rememberMe);
+    const submit = ({ email, password, rememberMe, captcha }) => {
+        logIn(email, password, rememberMe, captcha);
     }
 
     const path = props.location.state ? props.location.state.referrer : '/profile';
@@ -20,7 +26,9 @@ const Login = ({ isAuth, myId, logIn, ...props }) => {
     return (
         <Container>
             <h1>Login</h1>
-            <LoginForm onSubmit={submit} />
+            <LoginForm
+                onSubmit={submit}
+                captchaUrl={captchaUrl} />
         </Container>
     );
 }
@@ -28,7 +36,8 @@ const Login = ({ isAuth, myId, logIn, ...props }) => {
 
 const mstp = state => ({
     myId: getAuthedUserId(state),
-    isAuth: getIsAuth(state)
+    isAuth: getIsAuth(state),
+    captchaUrl: state.auth.captchaUrl,
 });
 
 

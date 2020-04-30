@@ -7,17 +7,6 @@ import { required } from '../../utils/validators.js';
 
 
 
-// const validate = values => {
-//     const errors = {};
-//     if (!values.email) {
-//         errors.email = 'required';
-//     }
-//     if (!values.password) {
-//         errors.password = 'required';
-//     }
-//     return errors;
-// }
-
 const renderField = ({
     input,
     label,
@@ -32,7 +21,7 @@ const renderField = ({
 
 
 
-const LoginForm = props => {
+const LoginForm = ({ captchaUrl, ...props }) => {
     return (
         <form onSubmit={props.handleSubmit} className={s.loginForm}>
             <div>
@@ -54,6 +43,21 @@ const LoginForm = props => {
             <div>
                 <Field name='rememberMe' component='input' type="checkbox" /> Remember me
             </div>
+            {captchaUrl
+                && <div>
+                    <div>
+                        <img src={captchaUrl} alt='Captcha' />
+                    </div>
+                    <div>
+                        <Field
+                            name='captcha'
+                            component={renderField}
+                            label="Text from image"
+                            type="text"
+                            validate={[required]} />
+                    </div>
+                </div>}
+
             {props.error
                 && <div>
                     <span>{props.error}</span>

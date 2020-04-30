@@ -11,9 +11,9 @@ const instance = Axios.create({
 
 
 export const usersAPI = {
-    getUsers(currentPage, pageSize) {
+    getUsers(page, pageSize) {
         return instance
-            .get(`users?page=${currentPage}&count=${pageSize}`)
+            .get(`users?page=${page}&count=${pageSize}`)
             .then(response => response.data);
     },
 
@@ -68,17 +68,16 @@ export const authAPI = {
             .then(response => response.data);
     },
 
-    logIn(email, password, rememberMe) {
+    logIn(email, password, rememberMe, captcha) {
         return instance
-            .post('auth/login', { email, password, rememberMe });
+            .post('auth/login', { email, password, rememberMe, captcha });
     },
 
     logOut() {
         return instance
             .post('auth/logout');
-    }
+    },
 }
-
 
 
 export const dialogsAPI = {
@@ -100,5 +99,12 @@ export const dialogsAPI = {
     postMessage(userId, body) {
         return instance
             .post(`dialogs/${userId}/messages`, { body });
+    }
+}
+
+export const securityAPI = {
+    getCaptchaUrl() {
+        return instance
+            .get('security/get-captcha-url');
     }
 }
