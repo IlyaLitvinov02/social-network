@@ -6,9 +6,9 @@ const
 
 let initialState = {
     postData: [
-        { id: 1, text: 'I am Batman', time: '21:03' },
-        { id: 2, text: 'I am Batman', time: '21:02' },
-        { id: 3, text: 'I am Batman', time: '21:01' }
+        // { id: 1, text: 'I am Batman', time: '21:03' },
+        // { id: 2, text: 'I am Batman', time: '21:02' },
+        // { id: 3, text: 'I am Batman', time: '21:01' }
     ],
 };
 

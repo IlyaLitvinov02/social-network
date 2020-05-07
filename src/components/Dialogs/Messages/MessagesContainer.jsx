@@ -15,9 +15,7 @@ const MessagesContainer = ({ messages, getMessages, postMessage, ...props }) => 
         }
     }, [props.match.params.userId, getMessages]);
 
-    const submitHandler = (values) => {
-        postMessage(userId, values);
-    }
+    const submitHandler = values => postMessage(userId, values);
 
     return <Messages messages={messages} onSend={submitHandler} />
 };
@@ -31,9 +29,7 @@ const mapStateToProps = state => ({
 
 
 const mapDispatchToProps = dispatch => ({
-    postMessage: (userId, values) => {
-        dispatch(postMessage(userId, values.messageInp));
-    },
+    postMessage: (userId, values) => dispatch(postMessage(userId, values.messageInp)),
 
     getMessages: userId => {
         dispatch(getMessages(userId));

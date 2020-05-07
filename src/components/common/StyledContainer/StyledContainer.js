@@ -13,7 +13,7 @@ export const StyledWriteBox = styled.div`
         width: 80%;
         max-width: 500px;
         left: 35%;
-        top: 35%;
+        bottom: 35%;
         z-index: 10;  
     }
     &:before {

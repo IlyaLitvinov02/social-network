@@ -1,24 +1,47 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { connect } from "react-redux";
 import Users from "./Users";
-import { getUsers, getMoreUsers, follow, unfollow } from "../../redux/usersReducer";
+import { getUsers, getMoreUsers, follow, unfollow, setGetUsersTerm, resetUsers } from "../../redux/usersReducer";
 
 
-class UsersContainer extends React.Component {
-    componentDidMount() {
-        this.props.getUsers(this.props.state.usersData, this.props.state.currentPage, this.props.state.pageSize);
+
+
+const UsersContainer = ({ state, getUsers, ...props }) => {
+    const { currentPage, pageSize, term, usersData, totalUsersCount } = state;
+    const usersDataLength = usersData.length;
+
+    useEffect(() => {
+        if (usersDataLength === 0) {
+            getUsers(currentPage, pageSize, term);
+        }
+    }, [usersDataLength, currentPage, pageSize, term, getUsers]);
+
+
+    const setTerm = ({ searchInp }) => {
+        props.resetUsers();
+        props.setGetUsersTerm(searchInp);
     }
 
-    render() {
-        return (
-            <Users
-                follow={this.props.follow}
-                unfollow={this.props.unfollow}
-                loadMore={() => { this.props.getMoreUsers(this.props.state.currentPage, this.props.state.pageSize) }}
-                state={this.props.state} />
-        );
+    const reset = () => {
+        props.setGetUsersTerm(null);
+        props.resetUsers();
     }
+
+    return (
+        <Users
+            follow={props.follow}
+            unfollow={props.unfollow}
+            loadMore={() => { props.getMoreUsers(currentPage, pageSize, term) }}
+            state={state}
+            setTerm={props.setGetUsersTerm}
+            submitHandler={setTerm}
+            resetUsers={props.resetUsers}
+            term={term}
+            reset={reset}
+            totalUsersCount={totalUsersCount} />
+    );
 }
+
 
 
 const mapStateToProps = (state) => {
@@ -27,7 +50,15 @@ const mapStateToProps = (state) => {
     };
 }
 
-export default connect(mapStateToProps, { getUsers, getMoreUsers, follow, unfollow })(UsersContainer);
+
+
+export default connect(mapStateToProps, {
+    getUsers,
+    getMoreUsers,
+    follow, unfollow,
+    setGetUsersTerm,
+    resetUsers
+})(UsersContainer);
 
 
 

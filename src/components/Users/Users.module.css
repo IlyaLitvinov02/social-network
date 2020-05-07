@@ -1,8 +1,28 @@
-.buttons {
-    width: 90px;
-    height: 35px;
-    margin: 0 auto;
-    border-radius: 5px;
-    border: 2px #2193FA solid;
-    background: #fff;
+.searchBlock {
+    margin-bottom: 13px;
+}
+
+.resultMsg {
+    font-family: Arial, sans-serif;
+    font-size: 14px;
+    color: rgb(117, 117, 117);
+}
+
+.term {
+    padding: 1px 7px 2px 5px;
+    border-radius: 7px;
+    background-color: rgb(218, 216, 216);
+}
+
+.resetButton {
+    background: none;
+    border: none;
+    outline: none;
+}
+
+
+.resetButton, .resetButton img {
+    width: 10px;
+    height: 10px;
+    cursor: pointer;
 }

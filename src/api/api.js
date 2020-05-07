@@ -11,10 +11,10 @@ const instance = Axios.create({
 
 
 export const usersAPI = {
-    getUsers(page, pageSize) {
-        return instance
-            .get(`users?page=${page}&count=${pageSize}`)
-            .then(response => response.data);
+    async getUsers(page, pageSize, term ) {
+        const response = await instance
+            .get(`users?page=${page}&count=${pageSize}${term ? '&term=' + term : ''}`);
+        return response.data;
     },
 
     async follow(userId) {
@@ -23,10 +23,10 @@ export const usersAPI = {
         return response.data;
     },
 
-    unfollow(userId) {
-        return instance
-            .delete(`follow/${userId}`)
-            .then(response => response.data);
+    async unfollow(userId) {
+        const response = await instance
+            .delete(`follow/${userId}`);
+        return response.data;
     }
 }
 

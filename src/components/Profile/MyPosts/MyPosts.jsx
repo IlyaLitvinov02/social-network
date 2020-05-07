@@ -23,7 +23,7 @@ const MyPosts = props => {
         <div className={s.myPosts}>
             {(props.myProfile)
                 && <Container className={s.postsInp}>
-                    <PostForm submitHandler={props.onAddPost} name='postInp' label='Поделитесь мыслями...' button='Add post'/>
+                    <PostForm onResetClick={() => {console.log('reset')} } submitHandler={props.onAddPost} name='postInp' label='Поделитесь мыслями...' button='Add post'/>
                 </Container>}
             {props.state.postData.map(post => <Post text={post.text} img={post.img} time={post.time} key={post.id} />)}
         </div>

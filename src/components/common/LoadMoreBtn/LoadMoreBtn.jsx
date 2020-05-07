@@ -2,9 +2,15 @@ import React from 'react';
 import s from './LoadMoreBtn.module.css';
 
 
-const LoadMoreBtn = (props) => {
+const LoadMoreBtn = ({ loadMore }) => {
     return (
-        <button onClick={props.loadMore} className={s.ldsEllipsis}><div></div><div></div><div></div></button>
+        <div className={s.wrapper}>
+            <button onClick={loadMore} className={s.ldsEllipsis}>
+                <div></div>
+                <div></div>
+                <div></div>
+            </button>
+        </div>
     );
 }
 
