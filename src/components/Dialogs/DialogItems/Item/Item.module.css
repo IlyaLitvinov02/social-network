@@ -1,0 +1,37 @@
+.img, .img img {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    float: left;
+    margin-right: 7px;
+    position: relative;
+}
+
+.img {
+    bottom: 5px;
+    right: 3px;
+}
+
+.item a {
+    color: #646A77;
+    display: block;
+    padding: 10px 20px;
+    text-decoration: none;
+    font: 18px Arial;
+    border-radius: 5px;
+}
+
+.item .active {
+    transform: scale(1.05, 1.05) translateX(-2px);
+    background: #2193FA;
+    color: #DDEAF7;
+    border: #5CA7FB 1px solid
+}
+
+.item a:hover {
+    background: rgb(223, 240, 255);
+}
+
+.item .active:hover {
+    background: rgb(0, 126, 236);
+}

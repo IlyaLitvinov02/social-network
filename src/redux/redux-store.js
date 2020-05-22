@@ -9,10 +9,10 @@ import appReducer from "./appReducer";
 import postsReducer from "./postsReducer";
 
 const reducers = combineReducers({
-    profilePage: profileReducer,
+    profile: profileReducer,
     posts: postsReducer,
-    dialogsPage: dialogsReducer,
-    usersPage: usersReducer,
+    dialogs: dialogsReducer,
+    users: usersReducer,
     auth: authReducer,
     app: appReducer,
     form: formReducer

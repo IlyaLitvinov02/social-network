@@ -1,0 +1,71 @@
+.statusWrapper {
+    width: 100%;
+    padding: 3px 5px 3px 5px;
+    position: relative;
+    left: -5px;
+    font: 15px Arial;
+    color: #646A77;
+}
+
+.statusWrapper.owner {
+    cursor: pointer;
+}
+
+.statusWrapper.owner:hover {
+    background: rgb(223, 240, 255);
+}
+
+.editStatus {
+    font: 14px Arial;
+    color: rgb(124, 128, 138);
+    position: absolute;
+    right: 5px;
+    visibility: hidden;
+}
+
+.statusWrapper.owner:hover .editStatus {
+    visibility: visible;
+}
+
+.editorWrap {
+    width: 103%;
+    position: absolute;
+    left: -24px;
+    top: -15px;
+    display: grid;
+    gap: 10px;
+    padding: 15px;
+    border: 1px #2193FA solid;
+    background-color: #fff;
+
+}
+
+.inputWrap input {
+    width: 99%;
+    border: 1px rgb(104, 184, 255) solid;
+    outline: none;
+    padding-left: 5px;
+    line-height: 18px;
+    font: 16px Arial;
+    color: #646A77;
+}
+
+.inputWrap input:focus {
+    outline: 1px #2193FA solid;  
+}
+
+.buttonWrap {
+    display: flex;
+    align-items: center;
+    flex: 10px;
+}
+
+.cancelButton {
+    margin-left: 10px;
+}
+
+.preloader {
+    width: 22px;
+    height: 22px;
+    margin-left: auto;
+}

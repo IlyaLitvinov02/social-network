@@ -1,11 +1,9 @@
 import React from 'react';
 import s from './Navbar.module.css';
 import { NavLink } from "react-router-dom";
-import { connect } from 'react-redux';
-import { getAuthedUserId } from '../../redux/selectors/auth-selectors';
-import Container from '../common/StyledContainer/StyledContainer';
+import { Container } from '../common/Styled/Styled';
 
-const Navbar = props => {
+const Navbar = () => {
     const icon = `${s.icon} `;
     return (
         <nav className={s.nav}>
@@ -48,4 +46,4 @@ const Navbar = props => {
 
 
 
-export default connect(state => ({ myId: getAuthedUserId(state) }))(Navbar);
+export default Navbar;

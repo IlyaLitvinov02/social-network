@@ -8,11 +8,8 @@ const
 
 let initialState = {
     isLoading: false,
-
-    profileState: {
-        userProfile: null,
-        status: ""
-    },
+    userProfile: null,
+    status: ""
 };
 
 
@@ -22,31 +19,22 @@ const profileReducer = (state = initialState, action) => {
         case SET_USER_PROFILE:
             return {
                 ...state,
-                profileState: {
-                    ...state.profileState,
-                    userProfile: {
-                        ...state.profileState.userProfile,
-                        ...action.userProfile,
-                    }
+                userProfile: {
+                    ...state.userProfile,
+                    ...action.userProfile,
                 }
             };
         case SET_STATUS:
             return {
                 ...state,
-                profileState: {
-                    ...state.profileState,
-                    status: action.status
-                }
+                status: action.status
             };
         case SET_AUTHED_USER_PHOTOS:
             return {
                 ...state,
-                profileState: {
-                    ...state.profileState,
-                    userProfile: {
-                        ...state.profileState.userProfile,
-                        photos: { ...action.photos }
-                    }
+                userProfile: {
+                    ...state.userProfile,
+                    photos: { ...action.photos }
                 }
             };
         case SET_LOADING:

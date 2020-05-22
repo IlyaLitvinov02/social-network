@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Form.module.css';
 import { Field } from 'redux-form';
-import resetIcon from '../../../img/resetImg.png';
+import { Button } from '../Styled/Styled';
 
 
 
@@ -37,10 +37,6 @@ const Form = props => {
         } else props.submitHandler(values);
     }
 
-    const handleResetClick = () => {
-        if (props.onResetClick) props.onResetClick();
-        props.reset()
-    }
 
     return (
         <form onSubmit={props.handleSubmit(submit)} autoComplete='off'>
@@ -53,16 +49,9 @@ const Form = props => {
                         placeholder={props.label}
                         name={props.name}
                         customChangeHandler={props.customChangeHandler} />
-                    <button
-                        disabled={props.submitting || props.pristine}
-                        type='reset'
-                        onClick={handleResetClick}
-                        className={s.resetButton}>
-                        <img src={resetIcon} alt='reset' />
-                    </button>
                 </div>
                 <div className={s.buttonWrapper}>
-                    <button disabled={props.submitting || props.pristine}>{props.button}</button>
+                    <Button disabled={props.submitting || props.pristine}>{props.button}</Button>
                 </div>
             </div>
         </form>

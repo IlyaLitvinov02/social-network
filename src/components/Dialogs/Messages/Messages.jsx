@@ -5,6 +5,10 @@ import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import Form from '../../common/Form/Form.jsx';
 import { connect } from 'react-redux';
+import { groupByDate } from '../../../utils/helpers/groupBy';
+import { Container } from '../../common/Styled/Styled';
+import Preloder from '../../common/Preloder/Preloder';
+import MessagesHeader from './MessagesHeader/MessagesHeader';
 
 
 
@@ -14,16 +18,39 @@ const MessageForm = compose(
 )(Form);
 
 
-const Messages = props => {
+
+const Messages = ({ isLoading, messages, onSend, authedUserId, currentDialog }) => {
+    const messagesObj = groupByDate(messages);
+
+    if (isLoading || !currentDialog) return <Preloder />
     return (
         <div className={s.wrapper}>
-            <div className={s.messages}>
-                {props.messages.map(el =>
-                    <Message message={el.body} time={el.time} className={el.className} key={el.id} />)}
-            </div>
-            <div className={s.messagesInput}>
-                <MessageForm submitHandler={props.onSend} name='messageInp' label='Напишите сообщение...' button='Send' />
-            </div>
+            <MessagesHeader currentDialog={currentDialog} />
+            <Container className={s.messages}>
+                {Object.keys(messagesObj).map(key =>
+                    <div className={s.date} key={key}>
+                        <div>{key}</div>
+                        <div>{messagesObj[key].map(el =>
+                            <Message
+                                authedUserId={authedUserId}
+                                messageId={el.id}
+                                message={el.body}
+                                senderId={el.senderId}
+                                addedAt={el.addedAt}
+                                senderName={el.senderName}
+                                key={el.id} />)}
+                        </div>
+                    </div>
+                )}
+            </Container>
+            <Container className={s.messagesInput}>
+                <MessageForm
+                    resetAfterSubmit={true}
+                    submitHandler={onSend}
+                    name='messageInp'
+                    label='Напишите сообщение...'
+                    button='Send' />
+            </Container>
         </div>
     );
 }

@@ -1,22 +1,19 @@
 .dialogs {
     display: grid;
-    grid-template-columns: 2fr 10fr;
-    height: 500px;
+    grid-template-columns: 3fr 9fr;
 }
 
 
-.dialogItems a {
-    text-decoration: none;
-    /*color: black;*/
-    display: block;
-    font: 18px Arial;
-    /* border-bottom: 1px #888 solid; */
-    padding: 10px 5px;
+
+.itemsWrap {
+    padding-top: 5px;
+    padding-bottom: 5px;
 }
 
-/* .dialogItems a:hover {
-    background: #888;
-    color: white;
-} */
-
-
+.selectChatMsg {
+    font: 16px Arial;
+    color: rgb(145, 145, 145);
+    text-align: center;
+    position: relative;
+    top: 40%;
+}

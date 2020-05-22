@@ -4,8 +4,6 @@ import { compose } from 'redux';
 import { Link } from 'react-router-dom';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-//import s from './WriteBox.module.css';
-import Container, { StyledWriteBox } from '../../../common/StyledContainer/StyledContainer';
 
 
 const WriteBoxForm = compose(
@@ -16,21 +14,17 @@ const WriteBoxForm = compose(
 
 export default ({ userName, userId, submitHandler, closeWriteBox }) => {
     return (
-        // <div className={s.writeBox}>
-        <StyledWriteBox>
-            <Container>
-                <div>
-                    <span>{userName}</span>
-                </div>
-                <div>
-                    <Link to={`/dialogs/${userId}`}>{`To dialog with ${userName}`}</Link>
-                </div>
-                <div>
-                    <WriteBoxForm submitHandler={submitHandler} name='messageInp' label='Напишите сообщение...' button='Send' />
-                    <button onClick={closeWriteBox}>Cancel</button>
-                </div>
-            </Container>
-        </StyledWriteBox>
-        // </div>
+        <div>
+            <div>
+                <span>{userName}</span>
+            </div>
+            <div>
+                <Link to={`/dialogs/${userId}`}>{`To dialog with ${userName}`}</Link>
+            </div>
+            <div>
+                <WriteBoxForm submitHandler={submitHandler} name='messageInp' label='Напишите сообщение...' button='Send' />
+                <button onClick={closeWriteBox}>Cancel</button>
+            </div>
+        </div>
     );
 }

@@ -7,7 +7,7 @@ import Form from '../common/Form/Form';
 import { compose } from 'redux';
 import { reduxForm } from 'redux-form';
 import { connect } from 'react-redux';
-import Container from '../common/StyledContainer/StyledContainer';
+import { Container } from '../common/Styled/Styled';
 import deleteIcon from '../../img/deleteImg.png';
 
 
@@ -36,16 +36,17 @@ const Users = ({ totalUsersCount, reset, term, ...props }) => {
                && <div>
                   <span className={s.resultMsg}>
                      Total {totalUsersCount} users
-                  {term && <span> found by query:
-                     <span className={s.term}>
-                           {term}
-                           <button
-                              onClick={reset}
-                              className={s.resetButton}>
-                              <img src={deleteIcon} alt='reset' />
-                           </button>
-                        </span>
-                     </span>}
+                  {term
+                        && <span> found by query:
+                           <span className={s.term}>
+                              {term}
+                              <button
+                                 onClick={reset}
+                                 className={s.resetButton}>
+                                 <img src={deleteIcon} alt='reset' />
+                              </button>
+                           </span>
+                        </span>}
                   </span>
                </div>}
          </div>

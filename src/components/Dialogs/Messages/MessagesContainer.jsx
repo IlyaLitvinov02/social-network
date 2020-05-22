@@ -1,43 +1,37 @@
 import { getMessages, postMessage } from '../../../redux/dialogsReducer';
 import Messages from './Messages';
-import { connect } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import React, { useEffect } from 'react';
-import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
+import { getAuthedUserId } from '../../../redux/selectors/auth-selectors';
+import { getCurrentDialog } from '../../../redux/selectors/dialogs-selectors';
 
 
-const MessagesContainer = ({ messages, getMessages, postMessage, ...props }) => {
-    const userId = props.match.params.userId;
+const MessagesContainer = () => {
+    const params = useParams();
+    const userId = params.userId;
+
+    const messages = useSelector(state => state.dialogs.messagesData),
+        authedUserId = useSelector(getAuthedUserId),
+        isLoading = useSelector(state => state.dialogs.messagesIsLoading),
+        currentDialog = useSelector(state => getCurrentDialog(state, userId));
+    const dispatch = useDispatch();
+
 
     useEffect(() => {
-        if (props.match.params.userId) {
-            getMessages(props.match.params.userId);
-        }
-    }, [props.match.params.userId, getMessages]);
+        dispatch(getMessages(userId));
+    }, [userId, dispatch]);
 
-    const submitHandler = values => postMessage(userId, values);
+    const submitHandler = ({ messageInp }) => dispatch(postMessage(userId, messageInp));
 
-    return <Messages messages={messages} onSend={submitHandler} />
+    return <Messages
+        currentDialog={currentDialog[0]}
+        isLoading={isLoading}
+        authedUserId={authedUserId}
+        messages={messages}
+        onSend={submitHandler}
+    />
 };
 
 
-
-
-const mapStateToProps = state => ({
-    messages: state.dialogsPage.messagesData
-});
-
-
-const mapDispatchToProps = dispatch => ({
-    postMessage: (userId, values) => dispatch(postMessage(userId, values.messageInp)),
-
-    getMessages: userId => {
-        dispatch(getMessages(userId));
-    },
-});
-
-
-export default compose(
-    connect(mapStateToProps, mapDispatchToProps),
-    withRouter
-)(MessagesContainer);
+export default MessagesContainer;

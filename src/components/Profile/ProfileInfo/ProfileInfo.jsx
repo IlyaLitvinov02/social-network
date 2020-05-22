@@ -1,37 +1,39 @@
 import React from 'react';
 import s from './ProfileInfo.module.css';
-import Ava from './../../../img/ava.png';
+import avatar from './../../../img/ava.png';
 import ProfileStatus from './ProfileStatus/ProfileStatus';
-import Container from '../../common/StyledContainer/StyledContainer';
+import { Container } from '../../common/Styled/Styled';
 import PhotoInput from './ProfilePhotoInput/PhotoInput';
 import ProfileAbout from './ProfileAbout/ProfileAbout';
 
 
-const ProfileInfo = ({ myProfile, updateProfile, uploadPhoto, ...props }) => {
+const ProfileInfo = ({ isOwner, updateProfile, uploadPhoto, ...props }) => {
     return (
-        <Container className={s.bio}>
+        <div className={s.bio}>
             <div>
-                <img src={(props.state.userProfile.photos.large) ? props.state.userProfile.photos.large : Ava} alt='' />
-                <PhotoInput myProfile={myProfile} uploadPhoto={uploadPhoto} />
+                <Container className={s.photoWrap}>
+                    <img src={(props.state.userProfile.photos.large) ? props.state.userProfile.photos.large : avatar} alt='' />
+                    <PhotoInput isOwner={isOwner} uploadPhoto={uploadPhoto} />
+                </Container>
             </div>
-            <div>
+            <Container className={s.infoWrap}>
                 <div>
                     <span className={s.nick}>{props.state.userProfile.fullName}</span>
                 </div>
-                <div>
+                <div className={s.profileStatus}>
                     <ProfileStatus
                         status={props.state.status}
-                        myProfile={myProfile}
+                        isOwner={isOwner}
                         updateStatus={props.updateStatus} />
                 </div>
-                <div className={s.info}>
+                <div className={s.profileAbout}>
                     <ProfileAbout
-                        myProfile={myProfile}
+                        isOwner={isOwner}
                         userProfile={props.state.userProfile}
                         updateProfile={updateProfile} />
                 </div>
-            </div>
-        </Container>
+            </Container>
+        </div>
     );
 }
 

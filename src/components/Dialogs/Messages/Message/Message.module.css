@@ -4,7 +4,7 @@
 }
 
 .message.incoming {
-    background: #888;
+    background: grey;
     float: left;
 }
 
@@ -20,12 +20,12 @@
 .messageText {
     font: 18px Arial;
     line-height: 20px;
-    color: #000;
+    color: #fff;
     padding: 0 55px 2px 2px;
 }
 
 .messageTime {
-    font: 12px Arial;
+    font: 11px Arial;
     color: #ddd;
     position: absolute;
     right: 5px;

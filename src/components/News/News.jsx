@@ -1,5 +1,5 @@
 import React from 'react';
-import Container from '../common/StyledContainer/StyledContainer';
+import { Container } from '../common/Styled/Styled';
 //import s from './News.module.css';
 
 

@@ -44,9 +44,9 @@ const UsersContainer = ({ state, getUsers, ...props }) => {
 
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = state => {
     return {
-        state: state.usersPage
+        state: state.users
     };
 }
 

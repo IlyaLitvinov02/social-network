@@ -1,25 +1,64 @@
-
-
 .bio {
   box-sizing: border-box;
   width: 100%;
-  padding: 10px;
   display: grid;
   grid-template-columns: 3fr 6fr;
+  gap: 12px;
 }
 
-.bio img {
+.photoWrap, .infoWrap {
+  position: relative;
+  padding: 16px;
+}
+
+
+.photoWrap img {
   width: 240px;
   height: 240px;
   border-radius: 1%;
 }
 
-.info ul {
-  list-style-type: none;
-}
 
 .nick {
   font-weight: bold;
-  font: 18px Arial;
+  font: 20px Arial;
+  color: #646A77;
 }
 
+.profileStatus {
+  padding-bottom: 16px;
+  margin-bottom: 16px;
+  border-bottom: 1px rgb(230, 230, 230) solid;
+  position: relative;
+}
+
+
+.infoRow {
+  margin-top: 5px;
+  font: 15px Arial;
+  color: #646A77;
+  display: grid;
+  grid-template-columns: 4fr 7fr;
+}
+
+.contactsWrap {
+  position: relative;
+  margin-top: 25px;
+  padding-top: 14px;
+  border-top: 1px rgb(230, 230, 230) solid;
+}
+
+.contactsHeader {
+  color: rgb(97, 103, 114);
+  background: #fff;
+  font: 15px Arial;
+  position: absolute;
+  top: -10px;
+  width: 67px;
+}
+
+.editButton {
+  position: absolute;
+  bottom: 16px;
+  right: 16px;
+}

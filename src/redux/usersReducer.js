@@ -26,10 +26,6 @@ let initialState = {
 const usersReducer = (state = initialState, action) => {
    switch (action.type) {
       case SET_USERS:
-         return {
-            ...state,
-            usersData: [...action.u],
-         };
       case SET_TOTAL_USER_COUNT:
       case SET_LOADING:
       case SET_TERM:
@@ -77,7 +73,7 @@ const usersReducer = (state = initialState, action) => {
 
 
 export const toggleFollow = userId => ({ type: TOGGLE_FOLLOW, userId });
-export const setUsers = u => ({ type: SET_USERS, u });
+export const setUsers = u => ({ type: SET_USERS, payload: { usersData: [...u] } });
 export const loadMore = () => ({ type: LOAD_MORE });
 export const setTotalUsersCount = totalUsersCount => ({ type: SET_TOTAL_USER_COUNT, payload: { totalUsersCount } });
 export const setLoading = isLoading => ({ type: SET_LOADING, payload: { isLoading } });

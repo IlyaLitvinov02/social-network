@@ -12,7 +12,7 @@ it('dialog should be set', () => {
     const newState = dialogsReducer(state, action);
 
 
-    expect(newState.dialogsData[1].id).toBe(4);
+    expect(newState.dialogsData.length).toBe(2);
 });
 
 

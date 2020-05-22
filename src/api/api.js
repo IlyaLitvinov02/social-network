@@ -1,4 +1,5 @@
 import Axios from "axios";
+import moment from "moment";
 
 const instance = Axios.create({
     baseURL: 'https://social-network.samuraijs.com/api/1.0/',
@@ -99,7 +100,14 @@ export const dialogsAPI = {
     postMessage(userId, body) {
         return instance
             .post(`dialogs/${userId}/messages`, { body });
-    }
+    },
+
+    getNewMessages(userId = 2) {
+        const date = moment.utc().format('YYYY-MM-DDThh:mm:ss');
+        return instance
+            .get(`dialogs/${userId}/messages/new?newerThen=${date}`) 
+    },
+
 }
 
 export const securityAPI = {

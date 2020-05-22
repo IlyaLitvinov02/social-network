@@ -1,13 +1,19 @@
 import React from 'react';
-import s from './../../Dialogs.module.css';
+import s from './Item.module.css';
 import { NavLink } from "react-router-dom";
-//import Ava from './../../img/ava.gif';
+import Ava from './../../../../img/ava.png';
 
 
-const Item = (props) => {
+
+const Item = ({ photo, id, name }) => {
     return (
         <div className={s.item}>
-            <NavLink to={'/dialogs/' + props.id}>{props.name}</NavLink>
+            <NavLink activeClassName={s.active} to={'/dialogs/' + id}>
+                <div className={s.img}>
+                    <img src={photo ? photo : Ava} alt='' />
+                </div>
+                {name}
+            </NavLink>
         </div>
     );
 }

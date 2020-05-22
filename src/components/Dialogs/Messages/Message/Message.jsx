@@ -1,21 +1,25 @@
 import React from 'react';
-import './Message.css';
+import moment from "moment";
+import s from './Message.module.css';
 //import Ava from './../../img/ava.gif';
 
 
-const Message = (props) => {
+const Message = ({ message, senderId, authedUserId, addedAt, senderName }) => {
+
+    const date = new Date(addedAt);
+    const time = moment(date).format('LT');
 
     return (
-        <div>           
-            <div className={`message ${props.className}`}>
-                <div className='messageText'>
-                    {props.message}
+        <div>
+            <div className={`${s.message} ${senderId === authedUserId ? s.outcoming : s.incoming}`}>
+                <div className={s.messageText}>
+                    {message}
                 </div>
-                <div className='messageTime'>
-                    {props.time}
+                <div className={s.messageTime}>
+                    {time}
                 </div>
             </div>
-            <div className='clear'></div>
+            <div className={s.clear}></div>
         </div>
     );
 }

@@ -6,17 +6,17 @@ import DocumentTitle from '../common/DocumentTitle/DocumentTitle.jsx';
 
 
 const Profile = props => {
-    if (!props.state.profileState.userProfile || props.state.isLoading) return <Preloder />;
+    if (!props.state.userProfile || props.state.isLoading) return <Preloder />;
     return (
-        <DocumentTitle title={props.state.profileState.userProfile.fullName}>
+        <DocumentTitle title={props.state.userProfile.fullName}>
             <div>
                 <ProfileInfo
-                    state={props.state.profileState}
-                    myProfile={props.myProfile}
+                    state={props.state}
+                    isOwner={props.isOwner}
                     updateStatus={props.updateStatus}
                     uploadPhoto={props.uploadPhoto}
                     updateProfile={props.updateProfile} />
-                <MyPostsContainer myProfile={props.myProfile} />
+                <MyPostsContainer isOwner={props.isOwner} />
             </div>
         </DocumentTitle>
     );

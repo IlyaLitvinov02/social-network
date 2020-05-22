@@ -1,27 +1,10 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import DialogItems from './DialogItems';
-import { connect } from 'react-redux';
-import { getDialogs } from '../../../redux/dialogsReducer';
+import { useSelector } from 'react-redux';
+import { getDialogsData } from '../../../redux/selectors/dialogs-selectors';
 
+export const DialogItemsContainer = () => {
+    const dialogs = useSelector(getDialogsData);
 
-
-
-const DialogItemsContainer = ({ state, getDialogs }) => {
-    useEffect(() => {
-        getDialogs()
-    }, [getDialogs]);
-
-
-    return <DialogItems state={state} />
+    return <DialogItems dialogs={dialogs} />
 }
-
-
-
-const mapStateToProps = (state) => {
-    return {
-        state: state.dialogsPage.dialogsData
-    };
-}
-
-
-export default connect(mapStateToProps, { getDialogs })(DialogItemsContainer);

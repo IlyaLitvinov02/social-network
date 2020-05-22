@@ -1,36 +1,26 @@
-import React from 'react';
-import s from './Dialogs.module.css';
-import MessagesContainer from './Messages/MessagesContainer';
-import DialogItemsContainer from './DialogItems/DialogItemsContainer';
+import React, { useEffect } from 'react';
 import withRedirect from '../../hoc/withRedirect';
-import { compose } from 'redux';
-import { withRouter } from 'react-router-dom';
-import { connect } from 'react-redux';
-import { startChat } from '../../redux/dialogsReducer';
+import { useSelector, useDispatch } from 'react-redux';
+import { getDialogs } from '../../redux/dialogsReducer';
+import Dialogs from './Dialogs';
+import { useRouteMatch } from 'react-router-dom';
 
 
 
-const DialogsContainer = props => {
-    // const { startChat } = props;
-    // const userId = props.match.params.userId;
-    // useEffect(() => {
-    //     if (userId) {
-    //         startChat('1');
-    //     }
-    // }, [userId, startChat])
+const DialogsContainer = () => {
+    const isLoading = useSelector(state => state.dialogs.dialogsIsLoading);
+    const dispatch = useDispatch();
 
-    return (
-        <div className={s.dialogs}>
-            <DialogItemsContainer />
-            <MessagesContainer />
-        </div>
-    );
+    const match = useRouteMatch({
+        path: '/dialogs/:userId'
+    });
+
+    useEffect(() => {
+        dispatch(getDialogs());
+    }, [dispatch]);
+
+    return <Dialogs match={match} isLoading={isLoading} />
 }
 
 
-
-export default compose(
-    withRedirect,
-    withRouter,
-    connect(null, { startChat })
-)(DialogsContainer);
+export default withRedirect(DialogsContainer);

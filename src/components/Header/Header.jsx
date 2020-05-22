@@ -10,9 +10,9 @@ function Header(props) {
          <div className={s.loginBlock}>
             {(props.state.isAuth)
                ? <img src={Ava} alt="" onClick={props.toggleIsDeployed} />
-               : <Link to='/login/'>Log in</Link>}
+               : <Link to='/login/' className={s.loginBtn}>Log in</Link>}
             {props.isDeployed
-               && <div className={s.hiddenBlock}>
+               && <div className={s.dropDown}>
                   <div>
                      <Link to={`/profile/${props.state.userId}`}>My profile</Link>
                   </div>

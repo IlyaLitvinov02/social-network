@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import Container, { StyledWriteBox as Box } from '../../../common/StyledContainer/StyledContainer';
+import { Container, Button } from '../../../common/Styled/Styled';
+import s from './ProfilePhoto.module.css';
 
 
-export default ({ myProfile, uploadPhoto }) => {
+export default ({ isOwner, uploadPhoto }) => {
     const [editMode, setEditMode] = useState(false);
     const [error, setError] = useState(undefined);
     const imageFiles = React.createRef();
@@ -18,23 +19,21 @@ export default ({ myProfile, uploadPhoto }) => {
         } else setError('Input your image first');
     }
 
-    return myProfile
+    return isOwner
         ? <>
             {!editMode
                 ? <div>
-                    <span onClick={() => setEditMode(true)}>Upload photo</span>
+                    <Button className={s.uploadPhotoButton} onClick={() => setEditMode(true)}>Upload photo</Button>
                 </div>
-                : <Box>
-                    <Container>
-                        <input type="file" ref={imageFiles} />
-                        <button onClick={handleClick}>Upload photo</button>
-                        {error && <span>{error}</span>}
-                        <button onClick={() => {
-                            if (error) setError(undefined);
-                            setEditMode(false)
-                        }}>Cancel</button>
-                    </Container>
-                </Box>}
+                : <Container>
+                    <input type="file" ref={imageFiles} />
+                    <button onClick={handleClick}>Upload photo</button>
+                    {error && <span>{error}</span>}
+                    <button onClick={() => {
+                        if (error) setError(undefined);
+                        setEditMode(false)
+                    }}>Cancel</button>
+                </Container>}
         </>
         : null
 }
