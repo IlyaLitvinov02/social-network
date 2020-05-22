@@ -28,16 +28,16 @@ const User = (props) => {
                         onClick={props.follow}
                         disabled={props.followingInProgress.some(id => id === props.id)}>Follow</Button>}
                </div>
-               <div>
+               {/* <div>
                   <button onClick={props.openWriteBox}>Write message</button>
-               </div>
+               </div> */}
             </div>
-            {props.writeMode
+            {/* {props.writeMode
                && <MessagesWriteBox
                   userName={props.name}
                   userId={props.id}
                   closeWriteBox={props.cancelWriting}
-                  submitHandler={values => console.log(values)} />}
+                  submitHandler={values => console.log(values)} />} */}
          </div>
       </Container>
    );
