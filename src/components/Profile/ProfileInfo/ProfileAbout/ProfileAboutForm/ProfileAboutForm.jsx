@@ -64,7 +64,7 @@ const ProfileAboutForm = ({
                     type='checkbox'
                     name='lookingForAJob' /> Looking for a job
                 <Field
-                    label='A job I look for'
+                    label='About a job'
                     component={renderField}
                     type='text'
                     name='lookingForAJobDescription' />

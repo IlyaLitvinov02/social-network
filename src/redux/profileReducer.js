@@ -93,7 +93,7 @@ export const updateProfile = ({
     const dataObject = {
         aboutMe,
         lookingForAJob,
-        lookingForAJobDescription,
+        lookingForAJobDescription: lookingForAJobDescription || '---',
         fullName,
         contacts: {
             facebook,
@@ -101,6 +101,7 @@ export const updateProfile = ({
             youtube
         }
     }
+
     const response = await profileAPI.updateProfile(dataObject);
 
     if (response.data.resultCode === 0) {

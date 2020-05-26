@@ -32,9 +32,10 @@ const ProfileAbout = ({
                 <div className={s.infoRow}>
                     <span>About me:</span><span>{aboutMe || 'No information'}</span>
                 </div>
-                <div className={s.infoRow}>
-                    <span>About a job:</span><span>{lookingForAJobDescription || 'No information'}</span>
-                </div>
+                {lookingForAJob
+                    && <div className={s.infoRow}>
+                        <span>About a job:</span><span>{lookingForAJobDescription || 'No information'}</span>
+                    </div>}
                 {contactsKeys.some(key => !!contacts[key])
                     && <div className={s.contactsWrap}>
                         <div className={s.contactsHeader}>Contacts </div>
